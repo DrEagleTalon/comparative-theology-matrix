@@ -159,7 +159,35 @@ Where genuine internal disagreement exists within a denomination on a topic, a 0
 
 ## Context
 
-This tool was built for use in interfaith dialogue and da'wah work in northern Indiana, where the religious landscape includes one of the largest Old Order Amish settlements in the world (Elkhart and LaGrange counties), a strong Catholic presence anchored by Notre Dame in South Bend, significant Mennonite communities in the Goshen area, and a wide range of evangelical Protestant congregations. The Islam Similarity scoring is specifically intended to help identify which traditions share the most common ground with Islamic doctrine and practice — useful both for knowing where to start a conversation and for understanding where honest disagreement will surface.
+**Scope:** This tool is designed for interfaith dialogue, comparative religion study, and da'wah preparation across **American faith communities**. It can be applied and adapted to any region or context where these traditions are present.
+
+**Why I started here:** The initial dataset focuses on northern Indiana because that's where I am and where I see the most immediate need. This region includes one of the largest Old Order Amish settlements in the world (Elkhart and LaGrange counties), a strong Catholic presence anchored by Notre Dame in South Bend, significant Conservative Mennonite communities in the Goshen area, and a wide range of evangelical Protestant congregations. It's an ideal testing ground for mapping diverse Christian traditions alongside Islam.
+
+**Future development:** The tool is designed to scale. If you have expertise in other regions, communities, or traditions, contributions are welcome. The framework accommodates any denomination and any number of belief topics. Denominations and scores can be added via pull request or collaboration.
+
+---
+
+## Changelog
+
+All changes to this project are logged in [`CHANGELOG.txt`](./CHANGELOG.txt) in CSV format for easy parsing and version tracking. Each entry includes:
+
+- **Date**: YYYY-MM-DD
+- **Version**: Semantic versioning (e.g., 1.0.0)
+- **Branch**: Git branch name where change was made
+- **User**: GitHub username or contributor name
+- **Description**: Summary of change (beliefs added, traditions updated, bug fixes, etc.)
+- **Approved By**: Reviewer or maintainer who approved the change (if applicable)
+- **Scope**: `data` (beliefs/denominations), `feature` (new functionality), `bugfix`, `docs`, or `structure`
+
+Example:
+
+```csv
+Date,Version,Branch,User,Description,Approved By,Scope
+2026-04-09,1.0.0,main,DrEagleTalon,Initial release with 12 traditions and 110+ beliefs,self,data
+2026-04-10,1.1.0,dev/northern-indiana,Contributor,Added 5 new doctrinal beliefs to Eschatology,DrEagleTalon,data
+```
+
+When you commit changes on any branch, update both the README changelog section and the standalone `CHANGELOG.txt` file so that history is tracked and easily viewable.
 
 ---
 

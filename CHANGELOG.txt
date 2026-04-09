@@ -1,0 +1,6 @@
+Date,Version,Branch,User,Description,Approved By,Scope
+2026-04-09,1.0.0,main,DrEagleTalon,Initial release with 12 traditions and 110+ beliefs across 13 categories,self,data
+2026-04-09,1.0.1,main,DrEagleTalon,Added comprehensive comments throughout index.html for code navigation and maintainability,self,docs
+2026-04-09,1.0.1,main,DrEagleTalon,Fixed HTML structure and removed duplicate CSS from script section,self,bugfix
+2026-04-09,1.1.0,dev,DrEagleTalon,Updated README to clarify tool scope as American faith communities with northern Indiana as starting point,pending,docs
+2026-04-09,1.1.0,dev,DrEagleTalon,Added Changelog section to README with CSV format for version tracking,pending,docs

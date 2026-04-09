@@ -4,8 +4,269 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comparative Theology Matrix</title>
+
+<!-- CSS Styles: Defines the visual appearance of the page, including colors, layouts, and responsive design -->
 <style>
+  /* CSS Variables: Define reusable colors and values for light/dark themes */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff; --bg2: #f5f4f0; --bg3: #eceae4;
+    --text: #1a1a18; --text2: #555552; --text3: #99998f;
+    --border: rgba(0,0,0,0.10); --border2: rgba(0,0,0,0.18);
+    --radius: 8px;
+    --c2-bg: #EAF3DE; --c2-fg: #3B6D11;
+    --c1-bg: #C0DD97; --c1-fg: #27500A;
+    --c0-bg: #F1EFE8; --c0-fg: #444441;
+    --cn1-bg: #F5C4B3; --cn1-fg: #7A1E08;
+    --cn2-bg: #FAECE7; --cn2-fg: #7A1E08;
+    --na-bg: #E8E6E0; --na-fg: #99998f;
+    --header-bg: #2C2C2A; --header-fg: #F1EFE8;
+  }
+  /* Dark mode overrides */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
+      --text: #f0efe8; --text2: #b0afa6; --text3: #70706a;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
+      --c2-bg: #1a3a08; --c2-fg: #C0DD97;
+      --c1-bg: #2a4a10; --c1-fg: #C0DD97;
+      --c0-bg: #333330; --c0-fg: #D3D1C7;
+      --cn1-bg: #3a1208; --cn1-fg: #F5C4B3;
+      --cn2-bg: #4a0a08; --cn2-fg: #FAECE7;
+      --na-bg: #2a2a28; --na-fg: #70706a;
+      --header-bg: #1a1a18; --header-fg: #D3D1C7;
+    }
+  }
+  /* General body styles */
+  body { font-family: 'Arial', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; }
+  #app { max-width: 100%; overflow: hidden; }
+
+  /* Top bar: Contains title, legend, controls, and stats */
+  .top-bar {
+    padding: 14px 16px 0;
+    background: var(--bg);
+    position: sticky; top: 0; z-index: 50;
+    border-bottom: 1px solid var(--border2);
+  }
+  .title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.3px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 10px; }
+
+  /* Legend: Shows color coding for scores */
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text2); }
+  .leg-swatch { width: 28px; height: 18px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+
+  /* Buttons: General button styles, including active state and hover */
+  .btn { padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 5px; border: 1px solid var(--border2); background: transparent; color: var(--text2); transition: all 0.15s; font-family: inherit; }
+  .btn:hover { background: var(--bg2); }
+  .btn.active { background: #534AB7; color: #fff; border-color: #534AB7; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 4px; }
+  /* Row sort button: Small button for sorting columns in a row */
+  .row-sort-btn { margin-left: 8px; padding: 2px 6px; font-size: 10px; border-radius: 4px; border: 1px solid var(--border2); background: var(--bg2); color: var(--text2); cursor: pointer; }
+  .row-sort-btn:hover { background: var(--bg3); }
+
+  /* Search input */
+  .search-wrap { display: flex; align-items: center; gap: 6px; }
+  .search-wrap input { padding: 5px 10px; border: 1px solid var(--border2); border-radius: 5px; background: var(--bg2); color: var(--text); font-size: 12px; font-family: inherit; width: 220px; }
+  .search-wrap input:focus { outline: 2px solid #534AB7; outline-offset: -1px; }
+
+  /* Stats: Shows count of visible beliefs and traditions */
+  .stats { font-size: 11px; color: var(--text3); padding: 4px 0 8px; }
+
+  /* Table wrapper: Makes table scrollable */
+  .table-wrap { overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 230px); }
+  table { border-collapse: collapse; width: max-content; min-width: 100%; }
+
+  /* Table header styles: Broad and name rows for denominations */
+  thead tr.broad-row th { background: #1e1e1c; color: #D3D1C7; font-size: 10px; font-weight: 700; text-align: center; padding: 5px 4px; border: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.04em; }
+  thead tr.name-row th { background: #2C2C2A; color: #F1EFE8; font-size: 10px; font-weight: 700; text-align: center; padding: 6px 4px; border: 1px solid rgba(255,255,255,0.08); white-space: normal; line-height: 1.3; }
+  thead th.col-cat  { width: 100px; min-width: 100px; text-align: center !important; }
+  thead th.col-belief { width: 280px; min-width: 240px; text-align: left !important; padding-left: 10px !important; }
+
+  /* Sticky columns: Category and belief columns stay visible when scrolling */
+  .sticky-cat { position: sticky; left: 0; z-index: 20; }
+  .sticky-belief { position: sticky; left: 100px; z-index: 20; }
+  thead .sticky-cat, thead .sticky-belief { z-index: 30; }
+
+  /* Table body: Row hover effect and cell styles */
+  tbody tr:hover td { filter: brightness(0.93); }
+  tbody tr td { border: 1px solid var(--border); vertical-align: middle; }
+
+  /* Category cell: Colored background based on category */
+  td.cat-cell {
+    font-size: 10px; font-weight: 700; text-align: center; padding: 5px 6px;
+    white-space: normal; line-height: 1.3; letter-spacing: 0.03em;
+    width: 100px; min-width: 100px;
+  }
+  /* Belief cell: Contains the belief text and sort button */
+  td.belief-cell {
+    font-size: 11px; padding: 6px 10px; line-height: 1.4;
+    width: 280px; min-width: 240px;
+    background: var(--bg);
+  }
+  tr.row-even td.belief-cell { background: var(--bg2); }
+
+  /* Score cell: Shows the score value with color coding */
+  td.score-cell { text-align: center; width: 62px; min-width: 62px; padding: 5px 2px; }
+  td.score-cell span { font-size: 13px; font-weight: 700; }
+
+  /* Score classes: Color backgrounds for different score values */
+  .s2  { background: var(--c2-bg);  } .s2  span { color: var(--c2-fg);  }
+  .s1  { background: var(--c1-bg);  } .s1  span { color: var(--c1-fg);  }
+  .s0  { background: var(--c0-bg);  } .s0  span { color: var(--c0-fg);  }
+  .sn1 { background: var(--cn1-bg); } .sn1 span { color: var(--cn1-fg); }
+  .sn2 { background: var(--cn2-bg); } .sn2 span { color: var(--cn2-fg); }
+  .sna { background: var(--na-bg);  } .sna span { color: var(--na-fg);  font-weight: 400; }
+
+  /* Similarity section: Grid for Islam similarity scores */
+  .sim-section { padding: 16px; }
+  .sim-section h2 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .sim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+  .sim-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; }
+  .sim-card .sc-name { font-size: 12px; font-weight: 700; color: var(--text); }
+  .sim-card .sc-score { font-size: 18px; font-weight: 700; margin: 2px 0; }
+  .sim-card .sc-note { font-size: 10px; color: var(--text2); line-height: 1.4; margin-top: 4px; }
+
+  /* Tab bar: Navigation between different panels */
+  .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border2); padding: 0 16px; background: var(--bg); }
+  .tab { padding: 10px 16px; font-size: 12px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; color: var(--text2); transition: all 0.15s; }
+  .tab.active { color: #534AB7; border-bottom-color: #534AB7; }
+  .tab:hover { color: var(--text); }
+
+  /* Panels: Hidden by default, shown when active */
+  .panel { display: none; } .panel.active { display: block; }
+
+  /* Add belief modal: Popup for adding new beliefs */
+  #add-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; }
+  #add-modal.open { display:flex; }
+  .modal-box { background:var(--bg); border-radius:10px; padding:20px; width:500px; max-width:95vw; max-height:90vh; overflow-y:auto; border:1px solid var(--border2); }
+  .modal-box h3 { font-size:14px; font-weight:700; margin-bottom:12px; }
+  .form-row { margin-bottom:10px; }
+  .form-row label { display:block; font-size:11px; font-weight:600; color:var(--text2); margin-bottom:4px; }
+  .form-row input, .form-row select, .form-row textarea { width:100%; padding:6px 8px; border:1px solid var(--border2); border-radius:5px; background:var(--bg2); color:var(--text); font-family:inherit; font-size:12px; }
+  .score-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
+  .score-grid label { font-size:10px; color:var(--text2); }
+  .score-grid input { width:100%; }
+  .modal-btns { display:flex; gap:8px; margin-top:14px; justify-content:flex-end; }
+
+  /* Mobile responsive styles */
+  @media (max-width: 700px) {
+    td.belief-cell { min-width: 160px; width: 160px; font-size: 10px; }
+    .sticky-belief { left: 80px; }
+    thead th.col-cat { width: 80px; min-width: 80px; }
+    td.cat-cell { width: 80px; min-width: 80px; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- Tab bar: Switches between Heat Map, Islam Similarity, and How to Edit panels -->
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab('matrix')">Heat Map</div>
+  <div class="tab" onclick="showTab('similarity')">Islam Similarity</div>
+  <div class="tab" onclick="showTab('guide')">How to Edit</div>
+</div>
+
+<!-- Matrix panel: Main table view with heat map -->
+<div id="panel-matrix" class="panel active">
+  <div class="top-bar">
+    <div class="title">Comparative Theology Matrix — 12 Traditions</div>
+    <div class="legend">
+      <div class="leg-item"><span class="leg-swatch s2"><span>+2</span></span>Strongly affirms</div>
+      <div class="leg-item"><span class="leg-swatch s1"><span>+1</span></span>Affirms</div>
+      <div class="leg-item"><span class="leg-swatch s0"><span>0</span></span>Divided / middle</div>
+      <div class="leg-item"><span class="leg-swatch sn1"><span>-1</span></span>Negates</div>
+      <div class="leg-item"><span class="leg-swatch sn2"><span>-2</span></span>Strongly negates</div>
+      <div class="leg-item"><span class="leg-swatch sna"><span>—</span></span>N/A</div>
+    </div>
+    <div class="controls">
+      <div class="search-wrap">
+        <input type="text" id="search" placeholder="Filter beliefs..." oninput="renderTable()">
+      </div>
+      <div class="btn-group" id="cat-btns"></div>
+    </div>
+    <div class="controls" style="padding-top:0">
+      <span style="font-size:10px;color:var(--text3);margin-right:2px;">Traditions:</span>
+      <div class="btn-group" id="den-btns"></div>
+      <button class="btn" onclick="openAddModal()" style="margin-left:8px;background:#534AB7;color:#fff;border-color:#534AB7;">+ Add belief</button>
+    </div>
+    <div class="stats" id="sort-info">Click a denomination header to sort rows by that tradition, or click a row's button to reorder columns for that belief.</div>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="table-wrap">
+    <table id="matrix-table">
+      <thead id="t-head"></thead>
+      <tbody id="t-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Similarity panel: Shows ranked denominations by similarity to Islam -->
+<div id="panel-similarity" class="panel">
+  <div class="sim-section">
+    <h2>Islam Similarity Scores — denominations ranked by doctrinal proximity to Sunni Islam</h2>
+    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement — a da'wah preparation tool.</p>
+    <div class="sim-grid" id="sim-grid"></div>
+  </div>
+</div>
+
+<!-- Guide panel: Instructions on how to edit the file -->
+<div id="panel-guide" class="panel">
+  <div style="padding:20px;max-width:680px;">
+    <h2 style="font-size:15px;font-weight:700;margin-bottom:12px;">How to edit this file in VS Code</h2>
+    <div style="font-size:12px;line-height:1.8;color:var(--text);">
+      <p style="margin-bottom:10px;"><strong>Step 1 — Install Live Server extension</strong><br>
+      In VS Code, press Ctrl+Shift+X, search "Live Server" (by Ritwick Dey), install it.</p>
+      <p style="margin-bottom:10px;"><strong>Step 2 — Open this file</strong><br>
+      File → Open Folder → pick the folder this HTML file is in. Click the file in the sidebar.</p>
+      <p style="margin-bottom:10px;"><strong>Step 3 — Launch Live Server</strong><br>
+      Right-click the file in the sidebar → "Open with Live Server". Your browser opens and auto-refreshes on every save.</p>
+      <p style="margin-bottom:10px;"><strong>Step 4 — Find the data section</strong><br>
+      Press Ctrl+F in VS Code and search for:<br>
+      <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW BELIEFS BELOW</code></p>
+      <p style="margin-bottom:10px;"><strong>To add a belief row, copy this pattern:</strong><br>
+      <code style="background:var(--bg2);padding:4px 8px;border-radius:3px;font-size:11px;display:block;margin-top:4px;">["Category", "Your belief text here", [RCC,SBC,UMC,AG,LCMS,PCA,JW,AMI,MEN,SDA,LDS,ISL]],</code>
+      Scores: 2=strongly affirms, 1=affirms, 0=middle, -1=negates, -2=strongly negates, null=N/A</p>
+      <p style="margin-bottom:10px;"><strong>To add a denomination, find:</strong><br>
+      <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW DENOMINATIONS BELOW</code><br>
+      Then add a new entry and add a score to every belief row in the same position.</p>
+      <p style="margin-bottom:10px;"><strong>To host on GitHub Pages (free, shareable URL):</strong><br>
+      1. Create free account at github.com<br>
+      2. New repository → name it anything<br>
+      3. Upload this HTML file, name it <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">index.html</code><br>
+      4. Settings → Pages → Source: main branch → Save<br>
+      5. Your URL: <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">yourusername.github.io/reponame</code></p>
+      <p><strong>Quickest option — Netlify Drop:</strong><br>
+      Go to app.netlify.com/drop, drag this file onto the page, get a live URL in 30 seconds.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal for adding new beliefs -->
+<div id="add-modal">
+  <div class="modal-box">
+    <h3>Add a new belief row</h3>
+    <div class="form-row">
+      <label>Category</label>
+      <select id="m-cat"></select>
+    </div>
+    <div class="form-row">
+      <label>Belief / doctrine text</label>
+      <textarea id="m-belief" rows="2" placeholder="e.g. Prayer five times daily required"></textarea>
+    </div>
+    <div class="form-row">
+      <label>Scores for each tradition (2, 1, 0, -1, -2, or leave blank for N/A)</label>
+      <div class="score-grid" id="m-scores"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn" onclick="closeAddModal()">Cancel</button>
+      <button class="btn active" onclick="submitBelief()">Add belief</button>
+    </div>
+  </div>
+</div>
   :root {
     --bg: #ffffff; --bg2: #f5f4f0; --bg3: #eceae4;
     --text: #1a1a18; --text2: #555552; --text3: #99998f;
@@ -132,9 +393,6 @@
     thead th.col-cat { width: 80px; min-width: 80px; }
     td.cat-cell { width: 80px; min-width: 80px; }
   }
-</style>
-</head>
-<body>
 <div id="app">
 
 <div class="tab-bar">
@@ -480,10 +738,11 @@ function toggleColSort(belief) {
   renderTable();
 }
 
+// Main function to render the table
 function renderTable() {
-  const search = document.getElementById("search").value.toLowerCase();
-  let visDens = DENOMS.filter(d => activeDens.has(d.id));
-  const filtered = allBeliefs().filter(([cat,belief]) =>
+  const search = document.getElementById("search").value.toLowerCase(); // Get search query in lowercase
+  let visDens = DENOMS.filter(d => activeDens.has(d.id)); // Filter visible denominations
+  const filtered = allBeliefs().filter(([cat,belief]) => // Filter beliefs by category and search
     (activeCat==="All"||cat===activeCat) &&
     (!search||belief.toLowerCase().includes(search)||cat.toLowerCase().includes(search))
   );
