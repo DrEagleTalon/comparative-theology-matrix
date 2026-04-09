@@ -11,7 +11,7 @@ This project started as a da'wah and interfaith dialogue preparation tool. The g
 Every belief is scored on a scale:
 
 | Score | Meaning |
-|-------|---------|
+| ----- | --------- |
 | +2 | Strongly affirms |
 | +1 | Affirms |
 | 0 | Divided or middle ground |
@@ -25,7 +25,7 @@ Scores are drawn from official confessions, catechisms, and recognized community
 
 ## Files in this repo
 
-```
+```text
 theology_matrix.html    Primary tool — open in any browser, no installs needed
 theology_matrix.xlsx    Raw data backup — three sheets, same data, color coded
 README.md               This file
@@ -89,7 +89,7 @@ You will land directly on the data section. Copy any existing line and paste a n
 
 The 12 numbers correspond to the 12 traditions in this order:
 
-```
+```text
 RCC  = Roman Catholic
 SBC  = Southern Baptist Convention
 UMC  = United Methodist Church (post-2024)
@@ -128,7 +128,7 @@ Then go to every belief row in the `BELIEFS` array and add one score at the end 
 
 ---
 
-## How to add beliefs using the in-app form
+## How to add beliefs using the in app form
 
 The HTML file has a "+ Add belief" button in the toolbar. This opens a form where you can add a belief and scores without touching any code. Entries added this way are saved in your browser's local storage and persist between sessions. To make them permanent in the file, copy the entry into the `BELIEFS` data section in the code.
 
@@ -155,7 +155,7 @@ The HTML file has a "+ Add belief" button in the toolbar. This opens a form wher
 ## Traditions covered
 
 | ID | Full Name | Broad Category |
-|----|-----------|----------------|
+| --- | --- | --- |
 | RCC | Roman Catholic Church | Catholic |
 | SBC | Southern Baptist Convention | Protestant — Baptist |
 | UMC | United Methodist Church (post-2024) | Protestant — Methodist |
