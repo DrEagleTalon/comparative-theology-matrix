@@ -1,6 +1,6 @@
 # Comparative Theology Matrix
 
-An interactive reference tool mapping doctrinal positions across 12 Christian denominations and Sunni Islam on 110+ belief topics. Built for interfaith dialogue, da'wah preparation, and comparative religion study with a focus on northern Indiana faith communities.
+An interactive reference tool mapping doctrinal positions across various Christian denominations and Sunni Islam on 110+ belief topics. Built for interfaith dialogue, da'wah preparation, and comparative religion study with a focus on American faith communities.
 
 ---
 
@@ -47,11 +47,37 @@ README.md               This file
 
 ---
 
+## How to use the sorting and filtering features
+
+The HTML tool includes powerful sorting and filtering options to help you explore the data:
+
+### Filtering
+
+- **Search Beliefs**: Use the search box to filter beliefs by text or category.
+- **Filter by Category**: Click category buttons (All, Theology, Christology, etc.) to show only beliefs in that category.
+- **Filter by Tradition**: Click tradition buttons to show/hide specific denominations or religious groups.
+
+### Sorting Rows
+
+- **By Tradition Scores**: Click any denomination header to sort rows by that tradition's doctrinal scores (descending → ascending → unsorted).
+- **By Category**: Click the "Category" header to sort rows alphabetically by category (ascending → descending → unsorted).
+- **By Belief Text**: Click the "Belief / doctrine" header to sort rows alphabetically by belief description (ascending → descending → unsorted).
+
+### Clearing Sorts
+
+- **Clear Sort Button**: Click the "Clear Sort" button next to the search box to instantly reset all sorting and return to the default view.
+
+### Future Sorting Features
+
+- **Column Sorting by Belief**: Planned feature to reorder denomination columns by their scores for a specific belief (by clicking the belief row header). Currently commented out but will be re-enabled in a future update.
+
+---
+
 ## How to add a new belief row
 
 Open `theology_matrix.html` in VS Code. Press `Ctrl+F` and search for:
 
-```
+```js
 // ── ADD NEW BELIEFS BELOW
 ```
 
@@ -88,7 +114,7 @@ Save the file. If Live Server is running, the browser updates immediately.
 
 Search for:
 
-```
+```js
 // ── ADD NEW DENOMINATIONS BELOW
 ```
 

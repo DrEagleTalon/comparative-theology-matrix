@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparative Theology Matrix — Faith Traditions</title>
+<title>Comparative Theology Matrix - Faith Traditions</title>
 
 <!-- CSS Styles: Defines the visual appearance of the page, including colors, layouts, and responsive design -->
 <style>
@@ -171,20 +171,20 @@
 <!-- Matrix panel: Main table view with heat map -->
 <div id="panel-matrix" class="panel active">
   <div class="top-bar">
-    <div class="title">Comparative Theology Matrix — Faith Traditions</div>
+    <div class="title">Comparative Theology Matrix - Faith Traditions</div>
     <div class="legend">
       <div class="leg-item"><span class="leg-swatch s2"><span>+2</span></span>Strongly affirms</div>
       <div class="leg-item"><span class="leg-swatch s1"><span>+1</span></span>Affirms</div>
       <div class="leg-item"><span class="leg-swatch s0"><span>0</span></span>Divided / middle</div>
       <div class="leg-item"><span class="leg-swatch sn1"><span>-1</span></span>Negates</div>
       <div class="leg-item"><span class="leg-swatch sn2"><span>-2</span></span>Strongly negates</div>
-      <div class="leg-item"><span class="leg-swatch sna"><span>—</span></span>N/A</div>
+      <div class="leg-item"><span class="leg-swatch sna"><span>-</span></span>N/A</div>
     </div>
     <div class="controls">
       <div class="search-wrap">
         <input type="text" id="search" placeholder="Filter beliefs..." oninput="renderTable()">
       </div>
-      <div class="btn-group" id="cat-btns"></div>
+      <button class="btn" onclick="clearSort()">Clear Sort</button>      <div class="btn-group" id="cat-btns"></div>
     </div>
     <div class="controls" style="padding-top:0">
       <span style="font-size:10px;color:var(--text3);margin-right:2px;">Traditions:</span>
@@ -205,8 +205,8 @@
 <!-- Similarity panel: Shows ranked denominations by similarity to Islam -->
 <div id="panel-similarity" class="panel">
   <div class="sim-section">
-    <h2>Islam Similarity Scores — denominations ranked by doctrinal proximity to Sunni Islam</h2>
-    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement — a da'wah preparation tool.</p>
+    <h2>Islam Similarity Scores - denominations ranked by doctrinal proximity to Sunni Islam</h2>
+    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement - a da'wah preparation tool.</p>
     <div class="sim-grid" id="sim-grid"></div>
   </div>
 </div>
@@ -216,13 +216,13 @@
   <div style="padding:20px;max-width:680px;">
     <h2 style="font-size:15px;font-weight:700;margin-bottom:12px;">How to edit this file in VS Code</h2>
     <div style="font-size:12px;line-height:1.8;color:var(--text);">
-      <p style="margin-bottom:10px;"><strong>Step 1 — Install Live Server extension</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 1 - Install Live Server extension</strong><br>
       In VS Code, press Ctrl+Shift+X, search "Live Server" (by Ritwick Dey), install it.</p>
-      <p style="margin-bottom:10px;"><strong>Step 2 — Open this file</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 2 - Open this file</strong><br>
       File → Open Folder → pick the folder this HTML file is in. Click the file in the sidebar.</p>
-      <p style="margin-bottom:10px;"><strong>Step 3 — Launch Live Server</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 3 - Launch Live Server</strong><br>
       Right-click the file in the sidebar → "Open with Live Server". Your browser opens and auto-refreshes on every save.</p>
-      <p style="margin-bottom:10px;"><strong>Step 4 — Find the data section</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 4 - Find the data section</strong><br>
       Press Ctrl+F in VS Code and search for:<br>
       <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW BELIEFS BELOW</code></p>
       <p style="margin-bottom:10px;"><strong>To add a belief row, copy this pattern:</strong><br>
@@ -237,7 +237,7 @@
       3. Upload this HTML file, name it <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">index.html</code><br>
       4. Settings → Pages → Source: main branch → Save<br>
       5. Your URL: <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">yourusername.github.io/reponame</code></p>
-      <p><strong>Quickest option — Netlify Drop:</strong><br>
+      <p><strong>Quickest option - Netlify Drop:</strong><br>
       Go to app.netlify.com/drop, drag this file onto the page, get a live URL in 30 seconds.</p>
     </div>
   </div>
@@ -403,20 +403,20 @@
 
 <div id="panel-matrix" class="panel active">
   <div class="top-bar">
-    <div class="title">Comparative Theology Matrix — Faith Traditions</div>
+    <div class="title">Comparative Theology Matrix - Faith Traditions</div>
     <div class="legend">
       <div class="leg-item"><span class="leg-swatch s2"><span>+2</span></span>Strongly affirms</div>
       <div class="leg-item"><span class="leg-swatch s1"><span>+1</span></span>Affirms</div>
       <div class="leg-item"><span class="leg-swatch s0"><span>0</span></span>Divided / middle</div>
       <div class="leg-item"><span class="leg-swatch sn1"><span>-1</span></span>Negates</div>
       <div class="leg-item"><span class="leg-swatch sn2"><span>-2</span></span>Strongly negates</div>
-      <div class="leg-item"><span class="leg-swatch sna"><span>—</span></span>N/A</div>
+      <div class="leg-item"><span class="leg-swatch sna"><span>-</span></span>N/A</div>
     </div>
     <div class="controls">
       <div class="search-wrap">
         <input type="text" id="search" placeholder="Filter beliefs..." oninput="renderTable()">
       </div>
-      <div class="btn-group" id="cat-btns"></div>
+      <button class="btn" onclick="clearSort()">Clear Sort</button>      <div class="btn-group" id="cat-btns"></div>
     </div>
     <div class="controls" style="padding-top:0">
       <span style="font-size:10px;color:var(--text3);margin-right:2px;">Traditions:</span>
@@ -436,8 +436,8 @@
 
 <div id="panel-similarity" class="panel">
   <div class="sim-section">
-    <h2>Islam Similarity Scores — denominations ranked by doctrinal proximity to Sunni Islam</h2>
-    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement — a da'wah preparation tool.</p>
+    <h2>Islam Similarity Scores - denominations ranked by doctrinal proximity to Sunni Islam</h2>
+    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement - a da'wah preparation tool.</p>
     <div class="sim-grid" id="sim-grid"></div>
   </div>
 </div>
@@ -446,13 +446,13 @@
   <div style="padding:20px;max-width:680px;">
     <h2 style="font-size:15px;font-weight:700;margin-bottom:12px;">How to edit this file in VS Code</h2>
     <div style="font-size:12px;line-height:1.8;color:var(--text);">
-      <p style="margin-bottom:10px;"><strong>Step 1 — Install Live Server extension</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 1 - Install Live Server extension</strong><br>
       In VS Code, press Ctrl+Shift+X, search "Live Server" (by Ritwick Dey), install it.</p>
-      <p style="margin-bottom:10px;"><strong>Step 2 — Open this file</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 2 - Open this file</strong><br>
       File → Open Folder → pick the folder this HTML file is in. Click the file in the sidebar.</p>
-      <p style="margin-bottom:10px;"><strong>Step 3 — Launch Live Server</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 3 - Launch Live Server</strong><br>
       Right-click the file in the sidebar → "Open with Live Server". Your browser opens and auto-refreshes on every save.</p>
-      <p style="margin-bottom:10px;"><strong>Step 4 — Find the data section</strong><br>
+      <p style="margin-bottom:10px;"><strong>Step 4 - Find the data section</strong><br>
       Press Ctrl+F in VS Code and search for:<br>
       <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW BELIEFS BELOW</code></p>
       <p style="margin-bottom:10px;"><strong>To add a belief row, copy this pattern:</strong><br>
@@ -467,7 +467,7 @@
       3. Upload this HTML file, name it <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">index.html</code><br>
       4. Settings → Pages → Source: main branch → Save<br>
       5. Your URL: <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">yourusername.github.io/reponame</code></p>
-      <p><strong>Quickest option — Netlify Drop:</strong><br>
+      <p><strong>Quickest option - Netlify Drop:</strong><br>
       Go to app.netlify.com/drop, drag this file onto the page, get a live URL in 30 seconds.</p>
     </div>
   </div>
@@ -500,7 +500,7 @@
 
 <script>
 // ═══════════════════════════════════════════════════════════════════════════
-// DATA — edit everything below this line
+// DATA - edit everything below this line
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ── ADD NEW DENOMINATIONS BELOW (id, full name, broad category)
@@ -508,11 +508,11 @@
 // Each belief row must have a score at the same index position
 const DENOMS = [
   {id:"RCC",  name:"Roman Catholic",          broad:"Catholic"},
-  {id:"SBC",  name:"Southern Baptist (SBC)",  broad:"Protestant — Baptist"},
-  {id:"UMC",  name:"United Methodist",        broad:"Protestant — Methodist"},
-  {id:"AG",   name:"Assemblies of God",       broad:"Protestant — Pentecostal"},
-  {id:"LCMS", name:"Lutheran — LCMS",         broad:"Protestant — Lutheran"},
-  {id:"PCA",  name:"Presbyterian — PCA",      broad:"Protestant — Reformed"},
+  {id:"SBC",  name:"Southern Baptist (SBC)",  broad:"Protestant - Baptist"},
+  {id:"UMC",  name:"United Methodist",        broad:"Protestant - Methodist"},
+  {id:"AG",   name:"Assemblies of God",       broad:"Protestant - Pentecostal"},
+  {id:"LCMS", name:"Lutheran - LCMS",         broad:"Protestant - Lutheran"},
+  {id:"PCA",  name:"Presbyterian - PCA",      broad:"Protestant - Reformed"},
   {id:"JW",   name:"Jehovah's Witnesses",     broad:"Restorationist"},
   {id:"AMI",  name:"Old Order Amish",         broad:"Anabaptist"},
   {id:"MEN",  name:"Cons. Mennonite",         broad:"Anabaptist"},
@@ -541,14 +541,14 @@ const CAT_COLORS = {
 
 // Score similarity notes for Islam panel
 const SIM_NOTES = {
-  "Old Order Amish":       "Highest overlap — modesty, head covering, usury, a cappella, pacifism, mutual aid, community separation",
-  "Cons. Mennonite":       "Very close — pacifism, head covering, separation, usury prohibition, community emphasis",
+  "Old Order Amish":       "Highest overlap - modesty, head covering, usury, a cappella, pacifism, mutual aid, community separation",
+  "Cons. Mennonite":       "Very close - pacifism, head covering, separation, usury prohibition, community emphasis",
   "7th-day Adventist":     "Pork & alcohol prohibition, soul sleep, annihilationism, Sabbath emphasis create notable bridges",
-  "Jehovah's Witnesses":   "Rejects Trinity and hellfire, strict political neutrality, conscientious objection — tawhid-adjacent on some points",
-  "Latter-day Saints":     "Mixed — community & modest dress align; deification, extra-canon scripture, and LDS Christology diverge sharply",
+  "Jehovah's Witnesses":   "Rejects Trinity and hellfire, strict political neutrality, conscientious objection - tawhid-adjacent on some points",
+  "Latter-day Saints":     "Mixed - community & modest dress align; deification, extra-canon scripture, and LDS Christology diverge sharply",
   "Roman Catholic":        "Social justice tradition aligns; Mariology, icon veneration, purgatory are strongest divergences",
-  "Lutheran — LCMS":       "Biblical inerrancy shared; sacramental theology and Christology diverge from Islamic positions",
-  "Presbyterian — PCA":    "Strong inerrancy alignment; Calvinist predestination and limited atonement diverge",
+  "Lutheran - LCMS":       "Biblical inerrancy shared; sacramental theology and Christology diverge from Islamic positions",
+  "Presbyterian - PCA":    "Strong inerrancy alignment; Calvinist predestination and limited atonement diverge",
   "Assemblies of God":     "Charismatic gifts, tongues, and pre-trib rapture create divergence; alcohol abstinence and prayer discipline align",
   "United Methodist (UMC)":"Post-2024 LGBTQ inclusion diverges sharply; social justice tradition aligns",
   "Southern Baptist (SBC)":"Scripture inerrancy and abortion stance shared; sola fide and eternal security diverge significantly",
@@ -559,15 +559,15 @@ const SIM_NOTES = {
 // Scores align with DENOMS array above: RCC, SBC, UMC, AG, LCMS, PCA, JW, AMI, MEN, SDA, LDS, ISL
 // Values: 2=strongly affirms, 1=affirms, 0=middle, -1=negates, -2=strongly negates, null=N/A
 const BELIEFS = [
-  ["Theology","Classical Trinity — one substance, three co-equal persons",       [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2,-2,-2]],
+  ["Theology","Classical Trinity - one substance, three co-equal persons",       [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2,-2,-2]],
   ["Theology","God as incorporeal / pure spirit (not physical)",                 [ 2, 2, 2, 2, 2, 2, 1, 2, 2, 2,-2, 2]],
-  ["Theology","God is eternal — no beginning, no end",                           [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2, 2]],
+  ["Theology","God is eternal - no beginning, no end",                           [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2, 2]],
   ["Theology","Absolute divine sovereignty / strong predestination",             [ 1, 0,-1,-1, 1, 2,-1, 0, 0,-1,-1, 2]],
-  ["Theology","Open theism — God does not foreknow all future events",           [-2,-2, 0,-1,-2,-2,-2,-2,-1,-2,-1,-2]],
-  ["Christology","Jesus fully divine — second person of the Trinity",            [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2, 1,-2]],
+  ["Theology","Open theism - God does not foreknow all future events",           [-2,-2, 0,-1,-2,-2,-2,-2,-1,-2,-1,-2]],
+  ["Christology","Jesus fully divine - second person of the Trinity",            [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2, 1,-2]],
   ["Christology","Jesus co-equal with the Father",                               [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2,-1,-2]],
   ["Christology","Jesus as a created being (not eternal God)",                   [-2,-2,-2,-2,-2,-2, 2,-2,-2,-2, 0, 1]],
-  ["Christology","Jesus as prophet only — not divine",                           [-2,-2,-2,-2,-2,-2,-1,-2,-2,-2,-2, 2]],
+  ["Christology","Jesus as prophet only - not divine",                           [-2,-2,-2,-2,-2,-2,-1,-2,-2,-2,-2, 2]],
   ["Christology","Jesus pre-existed before creation",                            [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
   ["Christology","Virgin birth of Jesus",                                        [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
   ["Christology","Jesus as sinless",                                             [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
@@ -575,30 +575,30 @@ const BELIEFS = [
   ["Christology","Literal physical Second Coming",                               [ 2, 2, 2, 2, 2, 2,-1, 2, 2, 2, 2, 2]],
   ["Christology","Jesus as judge on the Day of Judgment",                        [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1]],
   ["Christology","Jesus as active intercessor before God",                       [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
-  ["Christology","Substitutionary atonement — Jesus died for sins",              [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
-  ["Soteriology","Salvation by faith alone — sola fide",                         [-2, 2,-1, 1, 2, 2,-2,-1,-1, 0,-2,-2]],
-  ["Soteriology","Salvation by grace alone — sola gratia",                       [ 1, 2, 1, 2, 2, 2,-1, 1, 1, 1,-1, 1]],
+  ["Christology","Substitutionary atonement - Jesus died for sins",              [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
+  ["Soteriology","Salvation by faith alone - sola fide",                         [-2, 2,-1, 1, 2, 2,-2,-1,-1, 0,-2,-2]],
+  ["Soteriology","Salvation by grace alone - sola gratia",                       [ 1, 2, 1, 2, 2, 2,-1, 1, 1, 1,-1, 1]],
   ["Soteriology","Works / deeds necessary for salvation",                        [ 2,-1, 1, 0,-1,-1, 2, 2, 1, 1, 2, 2]],
-  ["Soteriology","Universal atonement — Christ died for all",                    [ 2, 1, 2, 2, 2,-2, 1, 1, 1, 2, 2,null]],
-  ["Soteriology","Limited atonement — only for the elect",                       [-2,-1,-2,-2,-2, 2,-1,-2,-2,-2,-2,null]],
+  ["Soteriology","Universal atonement - Christ died for all",                    [ 2, 1, 2, 2, 2,-2, 1, 1, 1, 2, 2,null]],
+  ["Soteriology","Limited atonement - only for the elect",                       [-2,-1,-2,-2,-2, 2,-1,-2,-2,-2,-2,null]],
   ["Soteriology","Unconditional election to salvation",                          [ 0, 0,-2,-2, 1, 2,-1,-1,-1,-1,-2, 0]],
-  ["Soteriology","Eternal security — once saved, always saved",                  [-2, 2,-2,-1, 0, 2,-2,-2,-2,-2,-2,-2]],
+  ["Soteriology","Eternal security - once saved, always saved",                  [-2, 2,-2,-1, 0, 2,-2,-2,-2,-2,-2,-2]],
   ["Soteriology","Salvation can be lost / apostasy possible",                    [ 2,-2, 2, 2, 1,-2, 2, 2, 2, 2, 2, 2]],
   ["Soteriology","Baptism necessary for salvation",                              [ 2,-2, 0,-1, 2,-2, 2, 1, 0,-1, 2,null]],
   ["Soteriology","Confession and repentance necessary",                          [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
   ["Soteriology","Salvation only through explicit faith in Christ",              [ 1, 2,-1, 2, 2, 2, 2, 2, 2, 2, 1,-2]],
   ["Soteriology","Salvation possible outside the tradition",                     [ 1,-2, 2,-1,-1,-2,-2,-1, 0,-1, 1, 1]],
   ["Soteriology","Assurance of salvation claimed with certainty",                [ 0, 2, 1, 2, 2, 2,-1,-2,-1, 1, 0, 0]],
-  ["Scripture","Bible as sole rule of faith — sola scriptura",                   [-2, 2, 1, 2, 2, 2,-1, 1, 1, 1,-2,-2]],
+  ["Scripture","Bible as sole rule of faith - sola scriptura",                   [-2, 2, 1, 2, 2, 2,-1, 1, 1, 1,-2,-2]],
   ["Scripture","Biblical inerrancy (original manuscripts)",                      [ 1, 2, 0, 2, 2, 2, 1, 2, 2, 2, 1,-1]],
   ["Scripture","Continuing revelation after the Bible",                          [ 0,-2, 0, 2,-2,-2, 2,-2,-2, 1, 2,-2]],
   ["Scripture","Extra-canonical scripture as authoritative",                     [ 1,-2,-2,-2,-2,-2, 2,-1,-1, 1, 2, 2]],
   ["Scripture","Church tradition co-authoritative alongside scripture",          [ 2,-2, 1,-1, 1, 1,-1, 2, 1,-1, 2, 1]],
   ["Scripture","Quran as divine revelation",                                     [-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2]],
-  ["Scripture","Bible partially corrupted — tahrif",                             [-2,-2,-2,-2,-2,-2, 0,-2,-2,-2, 1, 2]],
+  ["Scripture","Bible partially corrupted - tahrif",                             [-2,-2,-2,-2,-2,-2, 0,-2,-2,-2, 1, 2]],
   ["Scripture","Prophetic office ongoing today",                                 [-1,-2, 0, 2,-2,-2, 2,-2,-2, 1, 2,-2]],
-  ["Sacraments","Eucharist as literal body/blood — transubstantiation",          [ 2,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2]],
-  ["Sacraments","Real presence in/with bread — sacramental union (LCMS)",        [-1,-2, 0,-2, 2, 1,-2,-2,-2,-2,-2,-2]],
+  ["Sacraments","Eucharist as literal body/blood - transubstantiation",          [ 2,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2]],
+  ["Sacraments","Real presence in/with bread - sacramental union (LCMS)",        [-1,-2, 0,-2, 2, 1,-2,-2,-2,-2,-2,-2]],
   ["Sacraments","Communion as symbolic memorial only",                           [-2, 2, 0, 2,-2,-1, 1, 2, 2, 2, 1,null]],
   ["Sacraments","Infant baptism practiced",                                      [ 2,-2, 2,-2, 2, 2,-2,-2,-2,-2,-2,null]],
   ["Sacraments","Believer's baptism only (professing adults)",                   [-2, 2,-1, 2,-2,-2, 2, 2, 2, 2, 2,null]],
@@ -610,31 +610,31 @@ const BELIEFS = [
   ["Sacraments","Foot-washing as a formal ordinance",                            [-1,-1,-1,-1,-2,-2,-2, 2, 2, 2,-2,-1]],
   ["Sacraments","Holy kiss practiced as a formal rite",                          [-2,-2,-2,-2,-2,-2,-2, 2, 2,-2,-2,-1]],
   ["Ecclesiology","Papal authority and infallibility",                            [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Ecclesiology","Episcopal governance — bishops rule",                          [ 2,-2, 2, 0,-1,-2,-2, 1,-1, 0, 2,-2]],
-  ["Ecclesiology","Presbyterian governance — elders / session",                  [-2,-1,-2,-1,-1, 2,-2,-1,-1,-1,-1, 0]],
-  ["Ecclesiology","Congregational governance — local church autonomy",           [-2, 2,-1, 1,-1,-2,-2, 2, 2,-1,-2, 1]],
+  ["Ecclesiology","Episcopal governance - bishops rule",                          [ 2,-2, 2, 0,-1,-2,-2, 1,-1, 0, 2,-2]],
+  ["Ecclesiology","Presbyterian governance - elders / session",                  [-2,-1,-2,-1,-1, 2,-2,-1,-1,-1,-1, 0]],
+  ["Ecclesiology","Congregational governance - local church autonomy",           [-2, 2,-1, 1,-1,-2,-2, 2, 2,-1,-2, 1]],
   ["Ecclesiology","Apostolic succession required for valid clergy",               [ 2,-2, 1,-2,-1,-2,-2,-2,-2,-2, 2,-2]],
   ["Ecclesiology","Women as ordained ministers / pastors",                       [-2,-2, 2, 2,-2,-2,-2,-2,-2,-1,-2,-2]],
   ["Ecclesiology","Lay leadership strongly emphasized",                           [-1, 1, 1, 1, 0, 1, 2, 2, 2, 1, 2, 2]],
   ["Ecclesiology","Clergy selected by lot (divine casting of lots)",              [-2,-2,-2,-2,-2,-2,-2, 2,-1,-2,-2,-2]],
-  ["Eschatology","Premillennialism — literal 1,000-year reign",                  [-1, 1,-1, 2,-1,-1, 2,-1,-1, 2, 2, 1]],
-  ["Eschatology","Amillennialism — 1,000-year reign is symbolic",                [ 2, 0, 1,-2, 2, 1,-2, 1, 1,-2,-2, 0]],
+  ["Eschatology","Premillennialism - literal 1,000-year reign",                  [-1, 1,-1, 2,-1,-1, 2,-1,-1, 2, 2, 1]],
+  ["Eschatology","Amillennialism - 1,000-year reign is symbolic",                [ 2, 0, 1,-2, 2, 1,-2, 1, 1,-2,-2, 0]],
   ["Eschatology","Pre-tribulation rapture",                                      [-2, 1,-1, 2,-2,-2,-2,-1,-1,-2,-2,-2]],
-  ["Eschatology","Eternal hell — eternal conscious punishment",                   [ 2, 2, 1, 2, 2, 2,-2, 2, 2,-2,-1, 2]],
-  ["Eschatology","Annihilationism — wicked permanently destroyed",               [-2,-2,-1,-2,-2,-2, 2,-2,-2, 2,-1,-2]],
-  ["Eschatology","Soul sleep — dead unconscious until resurrection",              [-2,-2,-2,-2,-2,-2, 2,-2,-2, 2,-1,-1]],
+  ["Eschatology","Eternal hell - eternal conscious punishment",                   [ 2, 2, 1, 2, 2, 2,-2, 2, 2,-2,-1, 2]],
+  ["Eschatology","Annihilationism - wicked permanently destroyed",               [-2,-2,-1,-2,-2,-2, 2,-2,-2, 2,-1,-2]],
+  ["Eschatology","Soul sleep - dead unconscious until resurrection",              [-2,-2,-2,-2,-2,-2, 2,-2,-2, 2,-1,-1]],
   ["Eschatology","Purgatory",                                                    [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,-1]],
-  ["Eschatology","Prayers for the dead — efficacious",                           [ 2,-2, 0,-2,-2,-2,-2,-2,-2,-2, 2, 2]],
+  ["Eschatology","Prayers for the dead - efficacious",                           [ 2,-2, 0,-2,-2,-2,-2,-2,-2,-2, 2, 2]],
   ["Eschatology","Literal bodily resurrection at end times",                     [ 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2]],
   ["Eschatology","Day of Final Judgment / accountability before God",            [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
   ["Eschatology","Physical paradise earth for believers (future)",               [ 1, 0, 0, 1, 0, 0, 2, 1, 1, 2, 2, 2]],
-  ["Eschatology","Humans can become gods — deification",                         [ 0,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2,-2]],
-  ["Mariology","Mary as Theotokos — Mother of God",                              [ 2,-1, 0,-1, 2,-1,-2,-1,-1,-1,-1,-1]],
+  ["Eschatology","Humans can become gods - deification",                         [ 0,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2,-2]],
+  ["Mariology","Mary as Theotokos - Mother of God",                              [ 2,-1, 0,-1, 2,-1,-2,-1,-1,-1,-1,-1]],
   ["Mariology","Mary's perpetual virginity",                                     [ 2,-2,-2,-2, 1,-2,-2,-2,-2,-2,-2, 0]],
   ["Mariology","Immaculate Conception of Mary",                                  [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
   ["Mariology","Mary's bodily Assumption into heaven",                           [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
   ["Mariology","Prayer to / through Mary",                                       [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Mariology","Veneration of saints — petitioning for intercession",            [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
+  ["Mariology","Veneration of saints - petitioning for intercession",            [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
   ["Mariology","Veneration of icons / images in worship",                        [ 1,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2]],
   ["Mariology","Veneration of relics",                                           [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
   ["Ethics-Family","Abortion prohibited",                                        [ 2, 2,-1, 2, 2, 2, 2, 2, 2, 1, 1, 1]],
@@ -644,7 +644,7 @@ const BELIEFS = [
   ["Ethics-Family","Divorce prohibited / severely restricted",                   [ 2,-1,-1,-1,-1,-1, 2, 2, 1,-1,-1,-1]],
   ["Ethics-Family","Polygamy permitted",                                         [-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1, 1]],
   ["Ethics-Family","Premarital sex prohibited",                                  [ 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Ethics-Family","Modest dress for women — official emphasis",                 [ 1, 1,-1, 1, 1, 1, 2, 2, 2, 1, 2, 2]],
+  ["Ethics-Family","Modest dress for women - official emphasis",                 [ 1, 1,-1, 1, 1, 1, 2, 2, 2, 1, 2, 2]],
   ["Ethics-Family","Head covering for women required",                           [ 1,-1,-2,-1,-1,-1, 2, 2, 2,-1,-1, 2]],
   ["Ethics-Family","Separation from worldly culture required",                   [-1,-1,-2,-1,-1,-1, 2, 2, 2, 1,-1, 1]],
   ["Ethics-Substance","Alcohol prohibited",                                      [-1, 1, 0, 2,-1,-1,-1,-1, 1, 2, 2, 2]],
@@ -663,7 +663,7 @@ const BELIEFS = [
   ["Worship","Fixed prayer direction / posture required",                        [-1,-2,-2,-1,-1,-2,-1,-1,-1,-2,-2, 2]],
   ["Worship","Worship held primarily in homes (not dedicated buildings)",        [-2,-2,-2,-1,-2,-2,-2, 2,-1,-2,-2,-1]],
   ["Social-Political","Pacifism / conscientious objection to all war",           [-1,-2,-1,-2,-2,-2, 2, 2, 2, 1,-1,-2]],
-  ["Social-Political","Just War theory — military service justified",            [ 2, 2, 1, 2, 2, 2,-2,-2,-2,-1, 2, 1]],
+  ["Social-Political","Just War theory - military service justified",            [ 2, 2, 1, 2, 2, 2,-2,-2,-2,-1, 2, 1]],
   ["Social-Political","Political non-participation",                             [-2,-2,-2,-2,-2, 0, 2, 2, 2,-1,-2,-1]],
   ["Social-Political","Active political engagement encouraged",                  [ 2, 2, 2, 1, 1, 0,-2,-2,-2, 0, 1, 0]],
   ["Social-Political","Rejection of modern technology (partial or full)",        [-2,-2,-2,-2,-2,-2,-2, 2, 1,-2,-2,-2]],
@@ -674,13 +674,13 @@ const BELIEFS = [
   ["Interfaith","Non-members definitively condemned",                            [-1, 1,-2, 1, 1, 2, 2, 1, 0, 1,-1, 1]],
   ["Interfaith","Salvation possible for sincere non-Christians",                 [ 2,-2, 2,-1,-1,-2,-2,-1, 0,-1, 1, 1]],
   ["Interfaith","Jews maintain ongoing covenantal status with God",              [ 1, 2, 1, 2, 0, 0,-2, 0, 0, 1, 1, 0]],
-  ["Interfaith","Bible partially or fully corrupted — tahrif",                   [-2,-2,-2,-2,-2,-2, 0,-2,-2,-2, 1, 2]],
+  ["Interfaith","Bible partially or fully corrupted - tahrif",                   [-2,-2,-2,-2,-2,-2, 0,-2,-2,-2, 1, 2]],
   ["Interfaith","Muhammad as a legitimate prophet",                              [-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2]],
 ];
 // ── END BELIEFS
 
 // ═══════════════════════════════════════════════════════════════════════════
-// APP — you generally do not need to edit below this line
+// APP - you generally do not need to edit below this line
 // ═══════════════════════════════════════════════════════════════════════════
 
 const ISL_IDX = DENOMS.findIndex(d => d.id === "ISL");
@@ -690,12 +690,14 @@ let rowSortDenom = null;
 let rowSortDir = "desc";
 let colSortBelief = null;
 let colSortDir = "desc";
+let catSortDir = null;
+let beliefSortDir = null;
 let customBeliefs = JSON.parse(localStorage.getItem("custom_beliefs") || "[]");
 const allBeliefs = () => [...BELIEFS, ...customBeliefs];
 
 const CATS = ["All", ...Object.keys(CAT_COLORS)];
 const scoreClass = s => s===2?"s2":s===1?"s1":s===0?"s0":s===-1?"sn1":s===-2?"sn2":"sna";
-const scoreLabel = s => s===null||s===undefined?"—":s>0?`+${s}`:String(s);
+const scoreLabel = s => s===null||s===undefined?"-":s>0?`+${s}`:String(s);
 
 function buildCatBtns() {
   const el = document.getElementById("cat-btns");
@@ -725,16 +727,58 @@ function toggleAllDens() {
 }
 
 function toggleDenomSort(id) {
-  if (rowSortDenom === id) rowSortDir = rowSortDir === "desc" ? "asc" : "desc";
-  else { rowSortDenom = id; rowSortDir = "desc"; }
+  // Function to sort rows by denomination scores
+  if (rowSortDenom === id) {
+    if (rowSortDir === "desc") rowSortDir = "asc";
+    else rowSortDenom = null;
+  } else {
+    rowSortDenom = id;
+    rowSortDir = "desc";
+  }
   colSortBelief = null;
+  catSortDir = null;
+  beliefSortDir = null;
   renderTable();
 }
 
 function toggleColSort(belief) {
+  // Function to reorder columns by belief scores (currently commented out in UI)
   if (colSortBelief === belief) colSortDir = colSortDir === "desc" ? "asc" : "desc";
   else { colSortBelief = belief; colSortDir = "desc"; }
   rowSortDenom = null;
+  catSortDir = null;
+  beliefSortDir = null;
+  renderTable();
+}
+
+function toggleCatSort() {
+  // Function to sort rows by category, then by belief
+  if (catSortDir === null) catSortDir = "asc";
+  else if (catSortDir === "asc") catSortDir = "desc";
+  else catSortDir = null;
+  rowSortDenom = null;
+  colSortBelief = null;
+  beliefSortDir = null;
+  renderTable();
+}
+
+function toggleBeliefSort() {
+  // Function to sort rows by belief text
+  if (beliefSortDir === null) beliefSortDir = "asc";
+  else if (beliefSortDir === "asc") beliefSortDir = "desc";
+  else beliefSortDir = null;
+  rowSortDenom = null;
+  colSortBelief = null;
+  catSortDir = null;
+  renderTable();
+}
+
+function clearSort() {
+  // Function to clear all sorting
+  rowSortDenom = null;
+  colSortBelief = null;
+  catSortDir = null;
+  beliefSortDir = null;
   renderTable();
 }
 
@@ -748,7 +792,18 @@ function renderTable() {
   );
 
   const sortedBeliefs = [...filtered];
-  if (rowSortDenom) {
+  if (catSortDir) {
+    sortedBeliefs.sort((a,b) => {
+      const cmp = a[0].localeCompare(b[0]);
+      if (cmp !== 0) return catSortDir === "asc" ? cmp : -cmp;
+      return a[1].localeCompare(b[1]);
+    });
+  } else if (beliefSortDir) {
+    sortedBeliefs.sort((a,b) => {
+      const cmp = a[1].localeCompare(b[1]);
+      return beliefSortDir === "asc" ? cmp : -cmp;
+    });
+  } else if (rowSortDenom) {
     const sortIdx = DENOMS.findIndex(d => d.id===rowSortDenom);
     sortedBeliefs.sort((a,b)=>{
       const aScore = a[2] ? a[2][sortIdx] : null;
@@ -760,13 +815,17 @@ function renderTable() {
   }
 
   const sortInfo = document.getElementById("sort-info");
-  if (rowSortDenom) {
+  if (catSortDir) {
+    sortInfo.textContent = `Rows sorted by Category ${catSortDir==="asc"?"↑":"↓"}.`;
+  } else if (beliefSortDir) {
+    sortInfo.textContent = `Rows sorted by Belief ${beliefSortDir==="asc"?"↑":"↓"}.`;
+  } else if (rowSortDenom) {
     const denom = DENOMS.find(d => d.id===rowSortDenom);
     sortInfo.textContent = `Rows sorted by ${denom.name} ${rowSortDir==="desc"?"↓":"↑"}.`;
   } else if (colSortBelief) {
-    sortInfo.textContent = `Columns sorted by scores for “${colSortBelief}” ${colSortDir==="desc"?"↓":"↑"}.`;
+    sortInfo.textContent = `Columns sorted by scores for "${colSortBelief}" ${colSortDir==="desc"?"↓":"↑"}.`;
   } else {
-    sortInfo.textContent = "Click a denomination header to sort rows by that tradition, or click a row's button to reorder columns for that belief.";
+    sortInfo.textContent = "Click a denomination header to sort rows by that tradition, or click Category/Belief headers to sort alphabetically.";
   }
 
   if (colSortBelief) {
@@ -794,7 +853,7 @@ function renderTable() {
     visDens.map(d=>`<th style="min-width:62px">${d.broad}</th>`).join("");
   const nameRow = document.createElement("tr");
   nameRow.className = "name-row";
-  nameRow.innerHTML = `<th class="col-cat sticky-cat">Category</th><th class="col-belief sticky-belief">Belief / doctrine</th>` +
+  nameRow.innerHTML = `<th class="col-cat sticky-cat" style="cursor:pointer" onclick="toggleCatSort()" title="Sort by Category">Category</th><th class="col-belief sticky-belief" style="cursor:pointer" onclick="toggleBeliefSort()" title="Sort by Belief">Belief / doctrine</th>` +
     visDens.map(d=>{
       const marker = d.id===rowSortDenom ? (rowSortDir==="desc"?" ↓":" ↑") : "";
       return `<th style="min-width:62px;cursor:pointer" onclick="toggleDenomSort('${d.id}')" title="Sort rows by ${d.name}">${d.name}${marker}</th>`;
@@ -820,7 +879,7 @@ function renderTable() {
     }).join("");
     return `<tr class="${rowClass}">
       <td class="cat-cell sticky-cat" style="background:${cbg};color:${cfg}">${catShow}</td>
-      <td class="belief-cell sticky-belief">${belief} <button class="row-sort-btn" onclick="toggleColSort(${JSON.stringify(belief)})" title="Reorder denomination columns by this belief">${rowSortLabel}</button></td>
+      <td class="belief-cell sticky-belief">${belief} <!-- <button class="row-sort-btn" onclick="toggleColSort(${JSON.stringify(belief)})" title="Reorder denomination columns by this belief">${rowSortLabel}</button> --></td>
       ${denCells}
     </tr>`;
   }).join("");
