@@ -32,3 +32,19 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+# If you ever add a Python sync script
+__pycache__/
+*.pyc
+
+# Temp files
+*.tmp
+*.bak
