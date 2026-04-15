@@ -1,0 +1,30 @@
+\section{Related Work}
+
+There has been growing interest in developing resources for Qur’anic text and recitation, yet existing efforts typically focus on either textual analysis or audio recordings, rather than providing a fully integrated multimodal resource. Early structured corpora, such as the \emph{Quranic Arabic Corpus} \cite{dukhovny2009qac}, provide full text with detailed morphological and syntactic annotations, supporting parsing, part-of-speech tagging, and grammatical analysis. More recent contributions, including the \emph{MASAQ corpus} \cite{sawalha2024masaq} and the corpus introduced by \cite{nashir2025quranic}, expand these annotations and incorporate orthographic variants (Uthmani and Imlaai scripts), Buckwalter and phonetic transliterations, as well as English translations at the verse level. Similarly, the \emph{Tanzil project} \cite{tanzil2008} offers the Qur’an aligned with translations in more than 40 languages, supporting multilingual NLP research, though without detailed linguistic or recitational information.
+
+\begin{table*}[t]
+\centering
+\caption{Feature comparison across prominent Quranic datasets. The proposed \textsc{Qur’an-MD} is the first to holistically integrate all listed modalities across multiple reciters at both verse and word levels, filling a critical gap in the available resources.}
+\label{tab:comparison_final}
+\resizebox{0.9\textwidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & \multicolumn{5}{c}{\textbf{Dataset}} \\
+\cmidrule(l){2-6}
+\textbf{Feature} & \begin{tabular}[c]{@{}c@{}}Quranic Arabic \\ Corpus \cite{dukhovny2009qac}\end{tabular} & \begin{tabular}[c]{@{}c@{}}Tanzil \\ Project \cite{tanzil2008}\end{tabular} & Tarteel \cite{khan2021tarteel} & QDAT \cite{qdat2021} & \begin{tabular}[c]{@{}c@{}}\textbf{\textsc{Qur’an-MD}} \\ \textbf{(Ours)}\end{tabular} \\ 
+\midrule
+Text (Arabic) & \yes & \yes & \yes & \yes & \yes \\
+Morpho-syntactic Data & \yes & \no & \no & \no & \yes \\
+Multi-Language Translation & \no & \yes & \no & \no & \yes \\
+Word-level Audio & \no & \no & \no & \yes & \yes \\
+Verse-level Audio & \no & \no & \yes & \yes & \yes \\
+Multiple Reciters & \no & \no & \yes & \no & \yes \\ 
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+
+Parallel to these textual resources, several initiatives have sought to capture Qur’anic recitation across multiple readers. Large-scale audio collections, such as \emph{Tarteel AI EveryAyah}\cite{khan2021tarteel} and the \emph{Quran-Recitations Dataset} \cite{quran_recitations_hf_dataset}, provide verse-level recordings across numerous reciters, while the \emph{Quranic Audio Dataset} \cite{quran_audio_dataset2024} and \emph{RetaSy} \cite{salameh2024retasy} focus on non-native reciters with labeled correctness annotations. The \emph{OpenSLR Quran Speech-to-Text corpus} \cite{openslr132} offers complete verse coverage for multiple reciters, and smaller targeted collections, such as \emph{QDAT} \cite{osman2021qdat} and its extensions \cite{eval_pronunciation_tajweed2025}, provide labeled data for Tajweed error detection using deep neural models. Recent Kaggle contributions, including the \emph{Quran Ayat Speech-to-Text} dataset \cite{bigguyubuntu2023ayat}, \emph{Quran Reciters dataset} \cite{omartariq2025}, \emph{Quran.com Audio dataset} \cite{abdo3id2022qurancom}, \emph{Quran Recitations for Audio Classification dataset} \cite{alrajeh2021recitations}, and the \emph{Comprehensive Quranic Dataset v1 (CQDV1)} \cite{cqdv12024}, offer large-scale verse-level audio recordings from dozens of reciters, but generally provide only Arabic text and audio without consistent transliteration or translation.
+
+Taken together, these resources demonstrate substantial progress in both linguistic annotation and audio collection, yet they remain fragmented: either focusing on text or audio, verse- or word-level data. None combine verse and word-level text, transliteration, English translation, and audio across multiple reciters with consistent cross-modal alignment. \textsc{Qur’an-MD} addresses these gaps by integrating verse and word-level text, English translation, transliteration, word-level audio, and verse audio from 30 reciters, providing a unified multimodal resource that supports research across natural language processing, speech technologies, linguistic analysis, and digital Islamic studies.
