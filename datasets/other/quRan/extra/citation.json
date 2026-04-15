@@ -1,0 +1,17 @@
+[
+  {
+    "title": "quRan: Complete Text of the Qur'an",
+    "author": [
+      {
+        "given": "Andrew",
+        "family": "Heiss",
+        "role": ["aut", "cre"],
+        "email": "andrew@andrewheiss.com",
+        "comment": {}
+      }
+    ],
+    "year": "2019",
+    "note": "R package version 0.1.0",
+    "url": "https://github.com/andrewheiss/quran"
+  }
+]

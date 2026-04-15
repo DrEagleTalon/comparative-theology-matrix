@@ -1,0 +1,14 @@
+To cite package ‘quRan’ in publications use:
+
+  Heiss A (2019). _quRan: Complete Text of the Qur'an_. R package
+  version 0.1.0, <https://github.com/andrewheiss/quran>.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {quRan: Complete Text of the Qur'an},
+    author = {Andrew Heiss},
+    year = {2019},
+    note = {R package version 0.1.0},
+    url = {https://github.com/andrewheiss/quran},
+  }

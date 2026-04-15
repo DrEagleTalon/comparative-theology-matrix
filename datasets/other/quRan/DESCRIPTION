@@ -1,0 +1,26 @@
+Package: quRan
+Type: Package
+Title: Complete Text of the Qur'an
+Version: 0.1.0
+Authors@R: person("Andrew", "Heiss", email = "andrew@andrewheiss.com", role = c("aut", "cre"))
+Description: Full text, in data frames containing one row per verse, of
+        the Qur'an in Arabic (with and without vowels) and in English
+        (the Yusuf Ali and Saheeh International translations),
+        formatted to be convenient for text analysis.
+URL: https://github.com/andrewheiss/quRan
+BugReports: https://github.com/andrewheiss/quRan/issues
+Depends: R (>= 3.0.0)
+Suggests: dplyr, testthat
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Repository: https://andrewheiss.r-universe.dev
+Date/Publication: 2019-01-11 07:37:23 UTC
+RemoteUrl: https://github.com/andrewheiss/quran
+RemoteRef: HEAD
+RemoteSha: e508d10f2fa4be0955d8a448eb3c114ae12550b5
+NeedsCompilation: no
+Packaged: 2026-03-26 04:55:43 UTC; root
+Author: Andrew Heiss [aut, cre]
+Maintainer: Andrew Heiss <andrew@andrewheiss.com>

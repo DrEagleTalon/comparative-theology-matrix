@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Package 'quRan' reference manual</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <!-- styling for math. katex.min.css expects fonts in same dir so use CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css">
+    <link rel="stylesheet" type="text/css" href="https://r-universe.dev/static/R.css">
+
+    <!-- for (future) customizations -->
+    <script src="https://r-universe.dev/static/manual.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://r-universe.dev/static/manual.css">
+
+  </head>
+
+  <body class="postdoc macintosh">
+    <h1 class="manual-title">Package 'quRan'</h1>
+    <table class="description-table">
+      <tr>
+<th>Title:</th>
+<td class="description-title">Complete Text of the Qur'an</td>
+</tr>
+      <tr>
+<th>Description:</th>
+<td class="description-description">Full text, in data frames containing one row per verse, of
+        the Qur'an in Arabic (with and without vowels) and in English
+        (the Yusuf Ali and Saheeh International translations),
+        formatted to be convenient for text analysis.</td>
+</tr>
+      <tr>
+<th>Authors:</th>
+<td class="description-author"><span>Andrew Heiss [aut, cre]</span></td>
+</tr>
+      <tr>
+<th>Maintainer:</th>
+<td class="description-maintainer">Andrew Heiss &lt;andrew@andrewheiss.com&gt;</td>
+</tr>
+      <tr>
+<th>License:</th>
+<td class="description-license">MIT + file LICENSE</td>
+</tr>
+      <tr>
+<th>Version:</th>
+<td class="description-version">0.1.0</td>
+</tr>
+      <tr>
+<th>Built:</th>
+<td class="description-date">2026-03-26 04:55:44 UTC</td>
+</tr>
+      <tr>
+<th>Source:</th>
+<td class="description-source">https://github.com/andrewheiss/quran</td>
+</tr>
+    </table>
+
+    <a href="#help-index" style="color:black;"><h2 id="help-index">Help Index</h2></a>
+    <ul id="help-index-list">
+<li class="help-index-item"><a href="#quRan">The Qur'an</a></li>
+<li class="help-index-item"><a href="#quran_ar">The text of the Qur'an (Arabic, all vowels)</a></li>
+<li class="help-index-item"><a href="#quran_ar_min">The text of the Qur'an (Arabic, no vowels)</a></li>
+<li class="help-index-item"><a href="#quran_en_sahih">The Saheeh International translation of the Qur'an (English)</a></li>
+<li class="help-index-item"><a href="#quran_en_yusufali">The Yusuf Ali translation of the Qur'an (English)</a></li>
+</ul>
+
+    <hr>
+    <div class="manual-pages-content">
+<div class="container manual-page" id="quRan"><div class="page-main">
+<a href="#quRan" class="help-page-title"><h2>The Qur'an</h2></a>
+
+<h3>Description</h3>
+
+<p>This package contains the complete text of the Qur'an in Arabic (with and
+without vowels) and in English (the Yusuf Ali and Saheeh International
+translations), formatted to be convenient for text analysis.
+</p>
+
+<hr>
+</div></div>
+<div class="container manual-page" id="quran_ar"><div class="page-main">
+<a href="#quran_ar" class="help-page-title"><h2>The text of the Qur'an (Arabic, all vowels)</h2></a>
+
+<h3>Description</h3>
+
+<p>A dataset containing the Arabic text of the Qur'an, with vowels.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden">quran_ar
+</code><code class="language-r">quran_ar</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 6236 rows and 18 columns:
+</p>
+
+<dl>
+<dt><code>surah_id</code></dt>
+<dd>
+<p>Unique id number for the surah</p>
+</dd>
+<dt><code>ayah_id</code></dt>
+<dd>
+<p>Unique id number for the ayah</p>
+</dd>
+<dt><code>surah_title_ar</code></dt>
+<dd>
+<p>Name of the surah (Arabic)</p>
+</dd>
+<dt><code>surah_title_en</code></dt>
+<dd>
+<p>Name of the surah (English; transliterated)</p>
+</dd>
+<dt><code>surah_title_en_trans</code></dt>
+<dd>
+<p>Name of the surah (English; translated)</p>
+</dd>
+<dt><code>revelation_type</code></dt>
+<dd>
+<p>Type of the surah (Meccan or Medinan)</p>
+</dd>
+<dt><code>text</code></dt>
+<dd>
+<p>Ayah text</p>
+</dd>
+<dt><code>surah</code></dt>
+<dd>
+<p>Surah</p>
+</dd>
+<dt><code>ayah</code></dt>
+<dd>
+<p>Ayah</p>
+</dd>
+<dt><code>ayah_title</code></dt>
+<dd>
+<p>Combined surah and ayah (e.g. 2:242)</p>
+</dd>
+<dt><code>juz</code></dt>
+<dd>
+<p>Juz'</p>
+</dd>
+<dt><code>manzil</code></dt>
+<dd>
+<p>Manzil</p>
+</dd>
+<dt><code>page</code></dt>
+<dd>
+<p>Page number</p>
+</dd>
+<dt><code>hizb_quarter</code></dt>
+<dd>
+<p>Maqra</p>
+</dd>
+<dt><code>sajda</code></dt>
+<dd>
+<p>Binary indicator for presence of a sajdah</p>
+</dd>
+<dt><code>sajda_id</code></dt>
+<dd>
+<p>Unique id number for the sajdah</p>
+</dd>
+<dt><code>sajda_recommended</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is recommended</p>
+</dd>
+<dt><code>sajda_obligatory</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is obligatory</p>
+</dd>
+</dl>
+<h3>Details</h3>
+
+<p>Because Surahs 89 and 113 are both translated as "The Dawn," Surah 113 has
+been retitled "The Daybreak"
+</p>
+
+
+<h3>Source</h3>
+
+<p>Tanzil (<a href="http://tanzil.net/docs/download" target="_blank">http://tanzil.net/docs/download</a>) and Al Quran Cloud (<a href="https://alquran.cloud/" target="_blank">https://alquran.cloud/</a>)
+</p>
+
+
+<h3>Examples</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden"># See first few rows
+head(quran_ar)
+
+# How many ayahs are in each surah?
+library(dplyr)
+
+quran_ar %&gt;%
+  group_by(surah_title_ar) %&gt;%
+  summarize(total_ayaat = n())
+</code><code class="language-r"><span class="token comment"># See first few rows</span>
+head<span class="token punctuation">(</span>quran_ar<span class="token punctuation">)</span>
+
+<span class="token comment"># How many ayahs are in each surah?</span>
+library<span class="token punctuation">(</span>dplyr<span class="token punctuation">)</span>
+
+quran_ar <span class="token percent-operator operator">%&gt;%</span>
+  group_by<span class="token punctuation">(</span>surah_title_ar<span class="token punctuation">)</span> <span class="token percent-operator operator">%&gt;%</span>
+  summarize<span class="token punctuation">(</span>total_ayaat <span class="token operator">=</span> n<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<hr>
+</div></div>
+<div class="container manual-page" id="quran_ar_min"><div class="page-main">
+<a href="#quran_ar_min" class="help-page-title"><h2>The text of the Qur'an (Arabic, no vowels)</h2></a>
+
+<h3>Description</h3>
+
+<p>A dataset containing the Arabic text of the Qur'an, without vowels.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden">quran_ar_min
+</code><code class="language-r">quran_ar_min</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 6236 rows and 18 columns:
+</p>
+
+<dl>
+<dt><code>surah_id</code></dt>
+<dd>
+<p>Unique id number for the surah</p>
+</dd>
+<dt><code>ayah_id</code></dt>
+<dd>
+<p>Unique id number for the ayah</p>
+</dd>
+<dt><code>surah_title_ar</code></dt>
+<dd>
+<p>Name of the surah (Arabic)</p>
+</dd>
+<dt><code>surah_title_en</code></dt>
+<dd>
+<p>Name of the surah (English; transliterated)</p>
+</dd>
+<dt><code>surah_title_en_trans</code></dt>
+<dd>
+<p>Name of the surah (English; translated)</p>
+</dd>
+<dt><code>revelation_type</code></dt>
+<dd>
+<p>Type of the surah (Meccan or Medinan)</p>
+</dd>
+<dt><code>text</code></dt>
+<dd>
+<p>Ayah text</p>
+</dd>
+<dt><code>surah</code></dt>
+<dd>
+<p>Surah</p>
+</dd>
+<dt><code>ayah</code></dt>
+<dd>
+<p>Ayah</p>
+</dd>
+<dt><code>ayah_title</code></dt>
+<dd>
+<p>Combined surah and ayah (e.g. 2:242)</p>
+</dd>
+<dt><code>juz</code></dt>
+<dd>
+<p>Juz'</p>
+</dd>
+<dt><code>manzil</code></dt>
+<dd>
+<p>Manzil</p>
+</dd>
+<dt><code>page</code></dt>
+<dd>
+<p>Page number</p>
+</dd>
+<dt><code>hizb_quarter</code></dt>
+<dd>
+<p>Maqra</p>
+</dd>
+<dt><code>sajda</code></dt>
+<dd>
+<p>Binary indicator for presence of a sajdah</p>
+</dd>
+<dt><code>sajda_id</code></dt>
+<dd>
+<p>Unique id number for the sajdah</p>
+</dd>
+<dt><code>sajda_recommended</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is recommended</p>
+</dd>
+<dt><code>sajda_obligatory</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is obligatory</p>
+</dd>
+</dl>
+<h3>Details</h3>
+
+<p>Because Surahs 89 and 113 are both translated as "The Dawn," Surah 113 has
+been retitled "The Daybreak"
+</p>
+
+
+<h3>Source</h3>
+
+<p>Tanzil (<a href="http://tanzil.net/docs/download" target="_blank">http://tanzil.net/docs/download</a>) and Al Quran Cloud (<a href="https://alquran.cloud/" target="_blank">https://alquran.cloud/</a>)
+</p>
+
+
+<h3>Examples</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden"># See first few rows
+head(quran_ar_min)
+
+# How many ayahs are in each surah?
+library(dplyr)
+
+quran_ar_min %&gt;%
+  group_by(surah_title_ar) %&gt;%
+  summarize(total_ayaat = n())
+</code><code class="language-r"><span class="token comment"># See first few rows</span>
+head<span class="token punctuation">(</span>quran_ar_min<span class="token punctuation">)</span>
+
+<span class="token comment"># How many ayahs are in each surah?</span>
+library<span class="token punctuation">(</span>dplyr<span class="token punctuation">)</span>
+
+quran_ar_min <span class="token percent-operator operator">%&gt;%</span>
+  group_by<span class="token punctuation">(</span>surah_title_ar<span class="token punctuation">)</span> <span class="token percent-operator operator">%&gt;%</span>
+  summarize<span class="token punctuation">(</span>total_ayaat <span class="token operator">=</span> n<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<hr>
+</div></div>
+<div class="container manual-page" id="quran_en_sahih"><div class="page-main">
+<a href="#quran_en_sahih" class="help-page-title"><h2>The Saheeh International translation of the Qur'an (English)</h2></a>
+
+<h3>Description</h3>
+
+<p>A dataset containing the English text of the Saheeh International translation of the Qur'an.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden">quran_en_sahih
+</code><code class="language-r">quran_en_sahih</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 6236 rows and 18 columns:
+</p>
+
+<dl>
+<dt><code>surah_id</code></dt>
+<dd>
+<p>Unique id number for the surah</p>
+</dd>
+<dt><code>ayah_id</code></dt>
+<dd>
+<p>Unique id number for the ayah</p>
+</dd>
+<dt><code>surah_title_ar</code></dt>
+<dd>
+<p>Name of the surah (Arabic)</p>
+</dd>
+<dt><code>surah_title_en</code></dt>
+<dd>
+<p>Name of the surah (English; transliterated)</p>
+</dd>
+<dt><code>surah_title_en_trans</code></dt>
+<dd>
+<p>Name of the surah (English; translated)</p>
+</dd>
+<dt><code>revelation_type</code></dt>
+<dd>
+<p>Type of the surah (Meccan or Medinan)</p>
+</dd>
+<dt><code>text</code></dt>
+<dd>
+<p>Ayah text</p>
+</dd>
+<dt><code>surah</code></dt>
+<dd>
+<p>Surah</p>
+</dd>
+<dt><code>ayah</code></dt>
+<dd>
+<p>Ayah</p>
+</dd>
+<dt><code>ayah_title</code></dt>
+<dd>
+<p>Combined surah and ayah (e.g. 2:242)</p>
+</dd>
+<dt><code>juz</code></dt>
+<dd>
+<p>Juz'</p>
+</dd>
+<dt><code>manzil</code></dt>
+<dd>
+<p>Manzil</p>
+</dd>
+<dt><code>page</code></dt>
+<dd>
+<p>Page number</p>
+</dd>
+<dt><code>hizb_quarter</code></dt>
+<dd>
+<p>Maqra</p>
+</dd>
+<dt><code>sajda</code></dt>
+<dd>
+<p>Binary indicator for presence of a sajdah</p>
+</dd>
+<dt><code>sajda_id</code></dt>
+<dd>
+<p>Unique id number for the sajdah</p>
+</dd>
+<dt><code>sajda_recommended</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is recommended</p>
+</dd>
+<dt><code>sajda_obligatory</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is obligatory</p>
+</dd>
+</dl>
+<h3>Details</h3>
+
+<p>Because Surahs 89 and 113 are both translated as "The Dawn," Surah 113 has
+been retitled "The Daybreak"
+</p>
+
+
+<h3>Source</h3>
+
+<p>Tanzil (<a href="http://tanzil.net/docs/download" target="_blank">http://tanzil.net/docs/download</a>) and Al Quran Cloud (<a href="https://alquran.cloud/" target="_blank">https://alquran.cloud/</a>)
+</p>
+
+
+<h3>Examples</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden"># See first few rows
+head(quran_en_sahih)
+
+# How many ayahs are in each surah?
+library(dplyr)
+
+quran_en_sahih %&gt;%
+  group_by(surah_title_en) %&gt;%
+  summarize(total_ayaat = n())
+</code><code class="language-r"><span class="token comment"># See first few rows</span>
+head<span class="token punctuation">(</span>quran_en_sahih<span class="token punctuation">)</span>
+
+<span class="token comment"># How many ayahs are in each surah?</span>
+library<span class="token punctuation">(</span>dplyr<span class="token punctuation">)</span>
+
+quran_en_sahih <span class="token percent-operator operator">%&gt;%</span>
+  group_by<span class="token punctuation">(</span>surah_title_en<span class="token punctuation">)</span> <span class="token percent-operator operator">%&gt;%</span>
+  summarize<span class="token punctuation">(</span>total_ayaat <span class="token operator">=</span> n<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<hr>
+</div></div>
+<div class="container manual-page" id="quran_en_yusufali"><div class="page-main">
+<a href="#quran_en_yusufali" class="help-page-title"><h2>The Yusuf Ali translation of the Qur'an (English)</h2></a>
+
+<h3>Description</h3>
+
+<p>A dataset containing the English text of the Yusuf Ali translation of the Qur'an.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden">quran_en_yusufali
+</code><code class="language-r">quran_en_yusufali</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 6236 rows and 18 columns:
+</p>
+
+<dl>
+<dt><code>surah_id</code></dt>
+<dd>
+<p>Unique id number for the surah</p>
+</dd>
+<dt><code>ayah_id</code></dt>
+<dd>
+<p>Unique id number for the ayah</p>
+</dd>
+<dt><code>surah_title_ar</code></dt>
+<dd>
+<p>Name of the surah (Arabic)</p>
+</dd>
+<dt><code>surah_title_en</code></dt>
+<dd>
+<p>Name of the surah (English; transliterated)</p>
+</dd>
+<dt><code>surah_title_en_trans</code></dt>
+<dd>
+<p>Name of the surah (English; translated)</p>
+</dd>
+<dt><code>revelation_type</code></dt>
+<dd>
+<p>Type of the surah (Meccan or Medinan)</p>
+</dd>
+<dt><code>text</code></dt>
+<dd>
+<p>Ayah text</p>
+</dd>
+<dt><code>surah</code></dt>
+<dd>
+<p>Surah</p>
+</dd>
+<dt><code>ayah</code></dt>
+<dd>
+<p>Ayah</p>
+</dd>
+<dt><code>ayah_title</code></dt>
+<dd>
+<p>Combined surah and ayah (e.g. 2:242)</p>
+</dd>
+<dt><code>juz</code></dt>
+<dd>
+<p>Juz'</p>
+</dd>
+<dt><code>manzil</code></dt>
+<dd>
+<p>Manzil</p>
+</dd>
+<dt><code>page</code></dt>
+<dd>
+<p>Page number</p>
+</dd>
+<dt><code>hizb_quarter</code></dt>
+<dd>
+<p>Maqra</p>
+</dd>
+<dt><code>sajda</code></dt>
+<dd>
+<p>Binary indicator for presence of a sajdah</p>
+</dd>
+<dt><code>sajda_id</code></dt>
+<dd>
+<p>Unique id number for the sajdah</p>
+</dd>
+<dt><code>sajda_recommended</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is recommended</p>
+</dd>
+<dt><code>sajda_obligatory</code></dt>
+<dd>
+<p>Binary indicator for whether a sajdah is obligatory</p>
+</dd>
+</dl>
+<h3>Details</h3>
+
+<p>Because Surahs 89 and 113 are both translated as "The Dawn," Surah 113 has
+been retitled "The Daybreak"
+</p>
+
+
+<h3>Source</h3>
+
+<p>Tanzil (<a href="http://tanzil.net/docs/download" target="_blank">http://tanzil.net/docs/download</a>) and Al Quran Cloud (<a href="https://alquran.cloud/" target="_blank">https://alquran.cloud/</a>)
+</p>
+
+
+<h3>Examples</h3>
+
+<pre class="language-r"><code class="language-r-input" hidden="hidden"># See first few rows
+head(quran_en_yusufali)
+
+# How many ayahs are in each surah?
+library(dplyr)
+
+quran_en_yusufali %&gt;%
+  group_by(surah_title_en) %&gt;%
+  summarize(total_ayaat = n())
+</code><code class="language-r"><span class="token comment"># See first few rows</span>
+head<span class="token punctuation">(</span>quran_en_yusufali<span class="token punctuation">)</span>
+
+<span class="token comment"># How many ayahs are in each surah?</span>
+library<span class="token punctuation">(</span>dplyr<span class="token punctuation">)</span>
+
+quran_en_yusufali <span class="token percent-operator operator">%&gt;%</span>
+  group_by<span class="token punctuation">(</span>surah_title_en<span class="token punctuation">)</span> <span class="token percent-operator operator">%&gt;%</span>
+  summarize<span class="token punctuation">(</span>total_ayaat <span class="token operator">=</span> n<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<hr>
+</div></div>
+</div>
+    <footer><p>Rendered with postdoc 1.4.2</p></footer>
+  </body>
+</html>

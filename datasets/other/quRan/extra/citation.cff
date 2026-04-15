@@ -1,0 +1,29 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "quRan" in publications use:'
+type: software
+license: MIT
+title: 'quRan: Complete Text of the Qur''an'
+version: 0.1.0
+doi: 10.32614/CRAN.package.quRan
+abstract: Full text, in data frames containing one row per verse, of the Qur'an in
+  Arabic (with and without vowels) and in English (the Yusuf Ali and Saheeh International
+  translations), formatted to be convenient for text analysis.
+authors:
+- family-names: Heiss
+  given-names: Andrew
+  email: andrew@andrewheiss.com
+repository: https://andrewheiss.r-universe.dev
+repository-code: https://github.com/andrewheiss/quRan
+commit: e508d10f2fa4be0955d8a448eb3c114ae12550b5
+url: https://github.com/andrewheiss/quRan
+date-released: '2019-01-11'
+contact:
+- family-names: Heiss
+  given-names: Andrew
+  email: andrew@andrewheiss.com
+
