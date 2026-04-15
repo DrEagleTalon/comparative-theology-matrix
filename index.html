@@ -3,958 +3,428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparative Theology Matrix - Faith Traditions</title>
+<title>DrEagleTalon's Research & Tools</title>
 
-<!-- CSS Styles: Defines the visual appearance of the page, including colors, layouts, and responsive design -->
 <style>
-  /* CSS Variables: Define reusable colors and values for light/dark themes */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
   :root {
-    --bg: #ffffff; --bg2: #f5f4f0; --bg3: #eceae4;
-    --text: #1a1a18; --text2: #555552; --text3: #99998f;
-    --border: rgba(0,0,0,0.10); --border2: rgba(0,0,0,0.18);
-    --radius: 8px;
-    --c2-bg: #EAF3DE; --c2-fg: #3B6D11;
-    --c1-bg: #C0DD97; --c1-fg: #27500A;
-    --c0-bg: #F1EFE8; --c0-fg: #444441;
-    --cn1-bg: #F5C4B3; --cn1-fg: #7A1E08;
-    --cn2-bg: #FAECE7; --cn2-fg: #7A1E08;
-    --na-bg: #E8E6E0; --na-fg: #99998f;
-    --header-bg: #2C2C2A; --header-fg: #F1EFE8;
+    --bg: #ffffff;
+    --bg-secondary: #f5f4f0;
+    --text: #1a1a18;
+    --text-muted: #666663;
+    --border: rgba(0, 0, 0, 0.1);
+    --accent: #534AB7;
+    --accent-hover: #6b5cc9;
+    --radius: 10px;
   }
-  /* Dark mode overrides */
+  
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
-      --text: #f0efe8; --text2: #b0afa6; --text3: #70706a;
-      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
-      --c2-bg: #1a3a08; --c2-fg: #C0DD97;
-      --c1-bg: #2a4a10; --c1-fg: #C0DD97;
-      --c0-bg: #333330; --c0-fg: #D3D1C7;
-      --cn1-bg: #3a1208; --cn1-fg: #F5C4B3;
-      --cn2-bg: #4a0a08; --cn2-fg: #FAECE7;
-      --na-bg: #2a2a28; --na-fg: #70706a;
-      --header-bg: #1a1a18; --header-fg: #D3D1C7;
+      --bg: #1c1c1a;
+      --bg-secondary: #252523;
+      --text: #f0efe8;
+      --text-muted: #999996;
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #6b5cc9;
+      --accent-hover: #7d6dd5;
     }
   }
-  /* General body styles */
-  body { font-family: 'Arial', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; }
-  #app { max-width: 100%; overflow: hidden; }
-
-  /* Top bar: Contains title, legend, controls, and stats */
-  .top-bar {
-    padding: 14px 16px 0;
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: var(--bg);
-    position: sticky; top: 0; z-index: 50;
-    border-bottom: 1px solid var(--border2);
+    color: var(--text);
+    line-height: 1.6;
   }
-  .title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.3px; }
-  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 10px; }
-
-  /* Legend: Shows color coding for scores */
-  .legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-  .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text2); }
-  .leg-swatch { width: 28px; height: 18px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
-
-  /* Buttons: General button styles, including active state and hover */
-  .btn { padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 5px; border: 1px solid var(--border2); background: transparent; color: var(--text2); transition: all 0.15s; font-family: inherit; }
-  .btn:hover { background: var(--bg2); }
-  .btn.active { background: #534AB7; color: #fff; border-color: #534AB7; }
-  .btn-group { display: flex; flex-wrap: wrap; gap: 4px; }
-  /* Row sort button: Small button for sorting columns in a row */
-  .row-sort-btn { margin-left: 8px; padding: 2px 6px; font-size: 10px; border-radius: 4px; border: 1px solid var(--border2); background: var(--bg2); color: var(--text2); cursor: pointer; }
-  .row-sort-btn:hover { background: var(--bg3); }
-
-  /* Search input */
-  .search-wrap { display: flex; align-items: center; gap: 6px; }
-  .search-wrap input { padding: 5px 10px; border: 1px solid var(--border2); border-radius: 5px; background: var(--bg2); color: var(--text); font-size: 12px; font-family: inherit; width: 220px; }
-  .search-wrap input:focus { outline: 2px solid #534AB7; outline-offset: -1px; }
-
-  /* Stats: Shows count of visible beliefs and traditions */
-  .stats { font-size: 11px; color: var(--text3); padding: 4px 0 8px; }
-
-  /* Table wrapper: Makes table scrollable */
-  .table-wrap { overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 230px); }
-  table { border-collapse: collapse; width: max-content; min-width: 100%; }
-
-  /* Table header styles: Broad and name rows for denominations */
-  thead tr.broad-row th { background: #1e1e1c; color: #D3D1C7; font-size: 10px; font-weight: 700; text-align: center; padding: 5px 4px; border: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.04em; }
-  thead tr.name-row th { background: #2C2C2A; color: #F1EFE8; font-size: 10px; font-weight: 700; text-align: center; padding: 6px 4px; border: 1px solid rgba(255,255,255,0.08); white-space: normal; line-height: 1.3; }
-  thead th.col-cat  { width: 100px; min-width: 100px; text-align: center !important; }
-  thead th.col-belief { width: 280px; min-width: 240px; text-align: left !important; padding-left: 10px !important; }
-
-  /* Sticky columns: Category and belief columns stay visible when scrolling */
-  .sticky-cat { position: sticky; left: 0; z-index: 20; }
-  .sticky-belief { position: sticky; left: 100px; z-index: 20; }
-  thead .sticky-cat, thead .sticky-belief { z-index: 30; }
-
-  /* Table body: Row hover effect and cell styles */
-  tbody tr:hover td { filter: brightness(0.93); }
-  tbody tr td { border: 1px solid var(--border); vertical-align: middle; }
-
-  /* Category cell: Colored background based on category */
-  td.cat-cell {
-    font-size: 10px; font-weight: 700; text-align: center; padding: 5px 6px;
-    white-space: normal; line-height: 1.3; letter-spacing: 0.03em;
-    width: 100px; min-width: 100px;
+  
+  /* Header & Navigation */
+  header {
+    background: linear-gradient(135deg, var(--accent) 0%, #185FA5 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  /* Belief cell: Contains the belief text and sort button */
-  td.belief-cell {
-    font-size: 11px; padding: 6px 10px; line-height: 1.4;
-    width: 280px; min-width: 240px;
-    background: var(--bg);
+  
+  header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
   }
-  tr.row-even td.belief-cell { background: var(--bg2); }
-
-  /* Score cell: Shows the score value with color coding */
-  td.score-cell { text-align: center; width: 62px; min-width: 62px; padding: 5px 2px; }
-  td.score-cell span { font-size: 13px; font-weight: 700; }
-
-  /* Score classes: Color backgrounds for different score values */
-  .s2  { background: var(--c2-bg);  } .s2  span { color: var(--c2-fg);  }
-  .s1  { background: var(--c1-bg);  } .s1  span { color: var(--c1-fg);  }
-  .s0  { background: var(--c0-bg);  } .s0  span { color: var(--c0-fg);  }
-  .sn1 { background: var(--cn1-bg); } .sn1 span { color: var(--cn1-fg); }
-  .sn2 { background: var(--cn2-bg); } .sn2 span { color: var(--cn2-fg); }
-  .sna { background: var(--na-bg);  } .sna span { color: var(--na-fg);  font-weight: 400; }
-
-  /* Similarity section: Grid for Islam similarity scores */
-  .sim-section { padding: 16px; }
-  .sim-section h2 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
-  .sim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
-  .sim-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; }
-  .sim-card .sc-name { font-size: 12px; font-weight: 700; color: var(--text); }
-  .sim-card .sc-score { font-size: 18px; font-weight: 700; margin: 2px 0; }
-  .sim-card .sc-note { font-size: 10px; color: var(--text2); line-height: 1.4; margin-top: 4px; }
-
-  /* Tab bar: Navigation between different panels */
-  .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border2); padding: 0 16px; background: var(--bg); }
-  .tab { padding: 10px 16px; font-size: 12px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; color: var(--text2); transition: all 0.15s; }
-  .tab.active { color: #534AB7; border-bottom-color: #534AB7; }
-  .tab:hover { color: var(--text); }
-
-  /* Panels: Hidden by default, shown when active */
-  .panel { display: none; } .panel.active { display: block; }
-
-  /* Add belief modal: Popup for adding new beliefs */
-  #add-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; }
-  #add-modal.open { display:flex; }
-  .modal-box { background:var(--bg); border-radius:10px; padding:20px; width:500px; max-width:95vw; max-height:90vh; overflow-y:auto; border:1px solid var(--border2); }
-  .modal-box h3 { font-size:14px; font-weight:700; margin-bottom:12px; }
-  .form-row { margin-bottom:10px; }
-  .form-row label { display:block; font-size:11px; font-weight:600; color:var(--text2); margin-bottom:4px; }
-  .form-row input, .form-row select, .form-row textarea { width:100%; padding:6px 8px; border:1px solid var(--border2); border-radius:5px; background:var(--bg2); color:var(--text); font-family:inherit; font-size:12px; }
-  .score-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
-  .score-grid label { font-size:10px; color:var(--text2); }
-  .score-grid input { width:100%; }
-  .modal-btns { display:flex; gap:8px; margin-top:14px; justify-content:flex-end; }
-
-  /* Mobile responsive styles */
-  @media (max-width: 700px) {
-    td.belief-cell { min-width: 160px; width: 160px; font-size: 10px; }
-    .sticky-belief { left: 80px; }
-    thead th.col-cat { width: 80px; min-width: 80px; }
-    td.cat-cell { width: 80px; min-width: 80px; }
+  
+  header p {
+    font-size: 14px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Main container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  /* Section styles */
+  .section {
+    margin-bottom: 50px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+  }
+  
+  /* Project grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(83, 74, 183, 0.15);
+    border-color: var(--accent);
+  }
+  
+  .card-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  
+  .card-description {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  
+  /* Big action buttons */
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  
+  .btn {
+    padding: 28px 20px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(83, 74, 183, 0.2);
+  }
+  
+  .btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  /* Bio section */
+  .bio-box {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .bio-box h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  
+  .bio-box p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+  
+  /* Social links */
+  .social-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.1);
+  }
+  
+  /* Two column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 24px;
+    }
+    
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 24px 16px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+    }
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  
+  /* Link placeholder style */
+  .placeholder-link {
+    opacity: 0.6;
+    font-style: italic;
+  }
+  
+  /* Tags for card metadata */
+  .tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-right: 6px;
   }
 </style>
 </head>
 <body>
-<div id="app">
 
-<!-- Tab bar: Switches between Heat Map, Islam Similarity, and How to Edit panels -->
-<div class="tab-bar">
-  <div class="tab active" onclick="showTab('matrix')">Heat Map</div>
-  <div class="tab" onclick="showTab('similarity')">Islam Similarity</div>
-  <div class="tab" onclick="showTab('guide')">How to Edit</div>
-</div>
+<header>
+  <h1>🧠 DrEagleTalon's Research & Tools</h1>
+  <p>Exploring comparative theology, philosophy, and interactive research tools</p>
+</header>
 
-<!-- Matrix panel: Main table view with heat map -->
-<div id="panel-matrix" class="panel active">
-  <div class="top-bar">
-    <div class="title">Comparative Theology Matrix - Faith Traditions</div>
-    <div class="legend">
-      <div class="leg-item"><span class="leg-swatch s2"><span>+2</span></span>Strongly affirms</div>
-      <div class="leg-item"><span class="leg-swatch s1"><span>+1</span></span>Affirms</div>
-      <div class="leg-item"><span class="leg-swatch s0"><span>0</span></span>Divided / middle</div>
-      <div class="leg-item"><span class="leg-swatch sn1"><span>-1</span></span>Negates</div>
-      <div class="leg-item"><span class="leg-swatch sn2"><span>-2</span></span>Strongly negates</div>
-      <div class="leg-item"><span class="leg-swatch sna"><span>-</span></span>N/A</div>
+<div class="container">
+  
+  <!-- Quick Links to Matrices -->
+  <section class="section">
+    <h2 class="section-title">📊 Comparative Matrices</h2>
+    <div class="button-grid">
+      <a href="christian-theology-matrix.html" class="btn btn-primary">
+        Christian Theology Matrix<br><span style="font-size: 12px; opacity: 0.9;">12 Traditions & 110+ Beliefs</span>
+      </a>
+      <a href="Muslim-Comparative-Matrix.html" class="btn btn-primary">
+        Muslim Comparative Matrix<br><span style="font-size: 12px; opacity: 0.9;">Islamic Doctrines & Traditions</span>
+      </a>
+      <a href="[PLACEHOLDER_CUSTOM_MATRIX]" class="btn btn-primary">
+        Custom Matrix Tool<br><span style="font-size: 12px; opacity: 0.9;">Build Your Own</span>
+      </a>
     </div>
-    <div class="controls">
-      <div class="search-wrap">
-        <input type="text" id="search" placeholder="Filter beliefs..." oninput="renderTable()">
+  </section>
+  
+  <!-- Bio Section -->
+  <section class="section">
+    <h2 class="section-title">👤 About Me</h2>
+    <div class="two-col">
+      <div class="bio-box">
+        <h3>My Mission</h3>
+        <p>I'm passionate about creating interactive tools that make complex comparative research accessible and visual. This site hosts a collection of theological matrices, philosophical frameworks, and research utilities designed to help you understand different worldviews and belief systems side by side.</p>
       </div>
-      <button class="btn" onclick="clearSort()">Clear Sort</button>      <div class="btn-group" id="cat-btns"></div>
-    </div>
-    <div class="controls" style="padding-top:0">
-      <span style="font-size:10px;color:var(--text3);margin-right:2px;">Traditions:</span>
-      <div class="btn-group" id="den-btns"></div>
-      <button class="btn" onclick="openAddModal()" style="margin-left:8px;background:#534AB7;color:#fff;border-color:#534AB7;">+ Add belief</button>
-    </div>
-    <div class="stats" id="sort-info">Click a denomination header to sort rows by that tradition, or click a row's button to reorder columns for that belief.</div>
-    <div class="stats" id="stats"></div>
-  </div>
-  <div class="table-wrap">
-    <table id="matrix-table">
-      <thead id="t-head"></thead>
-      <tbody id="t-body"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- Similarity panel: Shows ranked denominations by similarity to Islam -->
-<div id="panel-similarity" class="panel">
-  <div class="sim-section">
-    <h2>Islam Similarity Scores - denominations ranked by doctrinal proximity to Sunni Islam</h2>
-    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement - a da'wah preparation tool.</p>
-    <div class="sim-grid" id="sim-grid"></div>
-  </div>
-</div>
-
-<!-- Guide panel: Instructions on how to edit the file -->
-<div id="panel-guide" class="panel">
-  <div style="padding:20px;max-width:680px;">
-    <h2 style="font-size:15px;font-weight:700;margin-bottom:12px;">How to edit this file in VS Code</h2>
-    <div style="font-size:12px;line-height:1.8;color:var(--text);">
-      <p style="margin-bottom:10px;"><strong>Step 1 - Install Live Server extension</strong><br>
-      In VS Code, press Ctrl+Shift+X, search "Live Server" (by Ritwick Dey), install it.</p>
-      <p style="margin-bottom:10px;"><strong>Step 2 - Open this file</strong><br>
-      File → Open Folder → pick the folder this HTML file is in. Click the file in the sidebar.</p>
-      <p style="margin-bottom:10px;"><strong>Step 3 - Launch Live Server</strong><br>
-      Right-click the file in the sidebar → "Open with Live Server". Your browser opens and auto-refreshes on every save.</p>
-      <p style="margin-bottom:10px;"><strong>Step 4 - Find the data section</strong><br>
-      Press Ctrl+F in VS Code and search for:<br>
-      <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW BELIEFS BELOW</code></p>
-      <p style="margin-bottom:10px;"><strong>To add a belief row, copy this pattern:</strong><br>
-      <code style="background:var(--bg2);padding:4px 8px;border-radius:3px;font-size:11px;display:block;margin-top:4px;">["Category", "Your belief text here", [RCC,SBC,UMC,AG,LCMS,PCA,JW,AMI,MEN,SDA,LDS,ISL]],</code>
-      Scores: 2=strongly affirms, 1=affirms, 0=middle, -1=negates, -2=strongly negates, null=N/A</p>
-      <p style="margin-bottom:10px;"><strong>To add a denomination, find:</strong><br>
-      <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW DENOMINATIONS BELOW</code><br>
-      Then add a new entry and add a score to every belief row in the same position.</p>
-      <p style="margin-bottom:10px;"><strong>To host on GitHub Pages (free, shareable URL):</strong><br>
-      1. Create free account at github.com<br>
-      2. New repository → name it anything<br>
-      3. Upload this HTML file, name it <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">index.html</code><br>
-      4. Settings → Pages → Source: main branch → Save<br>
-      5. Your URL: <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">yourusername.github.io/reponame</code></p>
-      <p><strong>Quickest option - Netlify Drop:</strong><br>
-      Go to app.netlify.com/drop, drag this file onto the page, get a live URL in 30 seconds.</p>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<!-- Modal for adding new beliefs -->
-<div id="add-modal">
-  <div class="modal-box">
-    <h3>Add a new belief row</h3>
-    <div class="form-row">
-      <label>Category</label>
-      <select id="m-cat"></select>
-    </div>
-    <div class="form-row">
-      <label>Belief / doctrine text</label>
-      <textarea id="m-belief" rows="2" placeholder="e.g. Prayer five times daily required"></textarea>
-    </div>
-    <div class="form-row">
-      <label>Scores for each tradition (2, 1, 0, -1, -2, or leave blank for N/A)</label>
-      <div class="score-grid" id="m-scores"></div>
-    </div>
-    <div class="modal-btns">
-      <button class="btn" onclick="closeAddModal()">Cancel</button>
-      <button class="btn active" onclick="submitBelief()">Add belief</button>
-    </div>
-  </div>
-</div>
-  :root {
-    --bg: #ffffff; --bg2: #f5f4f0; --bg3: #eceae4;
-    --text: #1a1a18; --text2: #555552; --text3: #99998f;
-    --border: rgba(0,0,0,0.10); --border2: rgba(0,0,0,0.18);
-    --radius: 8px;
-    --c2-bg: #EAF3DE; --c2-fg: #3B6D11;
-    --c1-bg: #C0DD97; --c1-fg: #27500A;
-    --c0-bg: #F1EFE8; --c0-fg: #444441;
-    --cn1-bg: #F5C4B3; --cn1-fg: #7A1E08;
-    --cn2-bg: #FAECE7; --cn2-fg: #7A1E08;
-    --na-bg: #E8E6E0; --na-fg: #99998f;
-    --header-bg: #2C2C2A; --header-fg: #F1EFE8;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
-      --text: #f0efe8; --text2: #b0afa6; --text3: #70706a;
-      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
-      --c2-bg: #1a3a08; --c2-fg: #C0DD97;
-      --c1-bg: #2a4a10; --c1-fg: #C0DD97;
-      --c0-bg: #333330; --c0-fg: #D3D1C7;
-      --cn1-bg: #3a1208; --cn1-fg: #F5C4B3;
-      --cn2-bg: #4a0a08; --cn2-fg: #FAECE7;
-      --na-bg: #2a2a28; --na-fg: #70706a;
-      --header-bg: #1a1a18; --header-fg: #D3D1C7;
-    }
-  }
-  body { font-family: 'Arial', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; }
-  #app { max-width: 100%; overflow: hidden; }
-
-  .top-bar {
-    padding: 14px 16px 0;
-    background: var(--bg);
-    position: sticky; top: 0; z-index: 50;
-    border-bottom: 1px solid var(--border2);
-  }
-  .title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.3px; }
-  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 10px; }
-
-  .legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-  .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text2); }
-  .leg-swatch { width: 28px; height: 18px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
-
-  .btn { padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 5px; border: 1px solid var(--border2); background: transparent; color: var(--text2); transition: all 0.15s; font-family: inherit; }
-  .btn:hover { background: var(--bg2); }
-  .btn.active { background: #534AB7; color: #fff; border-color: #534AB7; }
-  .btn-group { display: flex; flex-wrap: wrap; gap: 4px; }
-  .row-sort-btn { margin-left: 8px; padding: 2px 6px; font-size: 10px; border-radius: 4px; border: 1px solid var(--border2); background: var(--bg2); color: var(--text2); cursor: pointer; }
-  .row-sort-btn:hover { background: var(--bg3); }
-
-  .search-wrap { display: flex; align-items: center; gap: 6px; }
-  .search-wrap input { padding: 5px 10px; border: 1px solid var(--border2); border-radius: 5px; background: var(--bg2); color: var(--text); font-size: 12px; font-family: inherit; width: 220px; }
-  .search-wrap input:focus { outline: 2px solid #534AB7; outline-offset: -1px; }
-
-  .stats { font-size: 11px; color: var(--text3); padding: 4px 0 8px; }
-
-  .table-wrap { overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 230px); }
-  table { border-collapse: collapse; width: max-content; min-width: 100%; }
-
-  thead tr.broad-row th { background: #1e1e1c; color: #D3D1C7; font-size: 10px; font-weight: 700; text-align: center; padding: 5px 4px; border: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.04em; }
-  thead tr.name-row th { background: #2C2C2A; color: #F1EFE8; font-size: 10px; font-weight: 700; text-align: center; padding: 6px 4px; border: 1px solid rgba(255,255,255,0.08); white-space: normal; line-height: 1.3; }
-  thead th.col-cat  { width: 100px; min-width: 100px; text-align: center !important; }
-  thead th.col-belief { width: 280px; min-width: 240px; text-align: left !important; padding-left: 10px !important; }
-
-  .sticky-cat { position: sticky; left: 0; z-index: 20; }
-  .sticky-belief { position: sticky; left: 100px; z-index: 20; }
-  thead .sticky-cat, thead .sticky-belief { z-index: 30; }
-
-  tbody tr:hover td { filter: brightness(0.93); }
-  tbody tr td { border: 1px solid var(--border); vertical-align: middle; }
-
-  td.cat-cell {
-    font-size: 10px; font-weight: 700; text-align: center; padding: 5px 6px;
-    white-space: normal; line-height: 1.3; letter-spacing: 0.03em;
-    width: 100px; min-width: 100px;
-  }
-  td.belief-cell {
-    font-size: 11px; padding: 6px 10px; line-height: 1.4;
-    width: 280px; min-width: 240px;
-    background: var(--bg);
-  }
-  tr.row-even td.belief-cell { background: var(--bg2); }
-
-  td.score-cell { text-align: center; width: 62px; min-width: 62px; padding: 5px 2px; }
-  td.score-cell span { font-size: 13px; font-weight: 700; }
-
-  .s2  { background: var(--c2-bg);  } .s2  span { color: var(--c2-fg);  }
-  .s1  { background: var(--c1-bg);  } .s1  span { color: var(--c1-fg);  }
-  .s0  { background: var(--c0-bg);  } .s0  span { color: var(--c0-fg);  }
-  .sn1 { background: var(--cn1-bg); } .sn1 span { color: var(--cn1-fg); }
-  .sn2 { background: var(--cn2-bg); } .sn2 span { color: var(--cn2-fg); }
-  .sna { background: var(--na-bg);  } .sna span { color: var(--na-fg);  font-weight: 400; }
-
-  .sim-section { padding: 16px; }
-  .sim-section h2 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
-  .sim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
-  .sim-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; }
-  .sim-card .sc-name { font-size: 12px; font-weight: 700; color: var(--text); }
-  .sim-card .sc-score { font-size: 18px; font-weight: 700; margin: 2px 0; }
-  .sim-card .sc-note { font-size: 10px; color: var(--text2); line-height: 1.4; margin-top: 4px; }
-
-  .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border2); padding: 0 16px; background: var(--bg); }
-  .tab { padding: 10px 16px; font-size: 12px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; color: var(--text2); transition: all 0.15s; }
-  .tab.active { color: #534AB7; border-bottom-color: #534AB7; }
-  .tab:hover { color: var(--text); }
-
-  .panel { display: none; } .panel.active { display: block; }
-
-  #add-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; }
-  #add-modal.open { display:flex; }
-  .modal-box { background:var(--bg); border-radius:10px; padding:20px; width:500px; max-width:95vw; max-height:90vh; overflow-y:auto; border:1px solid var(--border2); }
-  .modal-box h3 { font-size:14px; font-weight:700; margin-bottom:12px; }
-  .form-row { margin-bottom:10px; }
-  .form-row label { display:block; font-size:11px; font-weight:600; color:var(--text2); margin-bottom:4px; }
-  .form-row input, .form-row select, .form-row textarea { width:100%; padding:6px 8px; border:1px solid var(--border2); border-radius:5px; background:var(--bg2); color:var(--text); font-family:inherit; font-size:12px; }
-  .score-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
-  .score-grid label { font-size:10px; color:var(--text2); }
-  .score-grid input { width:100%; }
-  .modal-btns { display:flex; gap:8px; margin-top:14px; justify-content:flex-end; }
-
-  @media (max-width: 700px) {
-    td.belief-cell { min-width: 160px; width: 160px; font-size: 10px; }
-    .sticky-belief { left: 80px; }
-    thead th.col-cat { width: 80px; min-width: 80px; }
-    td.cat-cell { width: 80px; min-width: 80px; }
-  }
-<div id="app">
-
-<div class="tab-bar">
-  <div class="tab active" onclick="showTab('matrix')">Heat Map</div>
-  <div class="tab" onclick="showTab('similarity')">Islam Similarity</div>
-  <div class="tab" onclick="showTab('guide')">How to Edit</div>
-</div>
-
-<div id="panel-matrix" class="panel active">
-  <div class="top-bar">
-    <div class="title">Comparative Theology Matrix - Faith Traditions</div>
-    <div class="legend">
-      <div class="leg-item"><span class="leg-swatch s2"><span>+2</span></span>Strongly affirms</div>
-      <div class="leg-item"><span class="leg-swatch s1"><span>+1</span></span>Affirms</div>
-      <div class="leg-item"><span class="leg-swatch s0"><span>0</span></span>Divided / middle</div>
-      <div class="leg-item"><span class="leg-swatch sn1"><span>-1</span></span>Negates</div>
-      <div class="leg-item"><span class="leg-swatch sn2"><span>-2</span></span>Strongly negates</div>
-      <div class="leg-item"><span class="leg-swatch sna"><span>-</span></span>N/A</div>
-    </div>
-    <div class="controls">
-      <div class="search-wrap">
-        <input type="text" id="search" placeholder="Filter beliefs..." oninput="renderTable()">
+      <div class="bio-box">
+        <h3>What You'll Find Here</h3>
+        <p>Comparative matrices for theology and belief systems, interactive learning tools, philosophical frameworks, and original research. All tools are open-source and designed for educators, students, researchers, and anyone curious about comparative religion and philosophy.</p>
       </div>
-      <button class="btn" onclick="clearSort()">Clear Sort</button>      <div class="btn-group" id="cat-btns"></div>
     </div>
-    <div class="controls" style="padding-top:0">
-      <span style="font-size:10px;color:var(--text3);margin-right:2px;">Traditions:</span>
-      <div class="btn-group" id="den-btns"></div>
-      <button class="btn" onclick="openAddModal()" style="margin-left:8px;background:#534AB7;color:#fff;border-color:#534AB7;">+ Add belief</button>
+    
+    <!-- Social Links -->
+    <div style="text-align: center; margin-top: 24px;">
+      <p style="margin-bottom: 16px; font-weight: 600;">Connect with me</p>
+      <div class="social-links">
+        <a href="[PLACEHOLDER_GITHUB]" class="social-link" title="GitHub" class="placeholder-link">🐙</a>
+        <a href="[PLACEHOLDER_TWITTER]" class="social-link" title="Twitter / X" class="placeholder-link">𝕏</a>
+        <a href="[PLACEHOLDER_LINKEDIN]" class="social-link" title="LinkedIn" class="placeholder-link">💼</a>
+        <a href="[PLACEHOLDER_EMAIL]" class="social-link" title="Email" class="placeholder-link">✉️</a>
+        <a href="[PLACEHOLDER_YOUTUBE]" class="social-link" title="YouTube" class="placeholder-link">▶️</a>
+      </div>
     </div>
-    <div class="stats" id="sort-info">Click a denomination header to sort rows by that tradition, or click a row's button to reorder columns for that belief.</div>
-    <div class="stats" id="stats"></div>
-  </div>
-  <div class="table-wrap">
-    <table id="matrix-table">
-      <thead id="t-head"></thead>
-      <tbody id="t-body"></tbody>
-    </table>
-  </div>
+  </section>
+  
+  <!-- Featured Tools -->
+  <section class="section">
+    <h2 class="section-title">🛠️ Featured Tools</h2>
+    <div class="grid">
+      <a href="[PLACEHOLDER_TOOL_1]" class="card">
+        <div class="card-icon">📖</div>
+        <div class="card-title">Scriptural Reference Tool</div>
+        <div class="card-description">Quickly compare passages across different religious texts and translations.</div>
+        <div class="tag">Coming Soon</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_TOOL_2]" class="card">
+        <div class="card-icon">🗺️</div>
+        <div class="card-title">Belief Distribution Map</div>
+        <div class="card-description">Visualize how different beliefs are distributed across traditions geographically.</div>
+        <div class="tag">In Development</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_TOOL_3]" class="card">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">Doctrinal Comparison Engine</div>
+        <div class="card-description">Advanced search and filter across all matrices and belief systems.</div>
+        <div class="tag">Coming Soon</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_TOOL_4]" class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Matrix Template Generator</div>
+        <div class="card-description">Create your own comparative matrices using our standardized template.</div>
+        <div class="tag">Live</div>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Other Projects -->
+  <section class="section">
+    <h2 class="section-title">🎯 Other Projects & Resources</h2>
+    <div class="grid">
+      <a href="[PLACEHOLDER_BLOG]" class="card">
+        <div class="card-icon">📝</div>
+        <div class="card-title">Blog & Essays</div>
+        <div class="card-description">Philosophical essays, research notes, and theological commentary.</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_RESOURCES]" class="card">
+        <div class="card-icon">📚</div>
+        <div class="card-title">Resource Library</div>
+        <div class="card-description">Curated links to books, articles, and academic papers on comparative theology.</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_DATASETS]" class="card">
+        <div class="card-icon">💾</div>
+        <div class="card-title">Open Datasets</div>
+        <div class="card-description">Download belief data, doctrinal comparisons, and research datasets as CSV/JSON.</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_CONTRIBUTE]" class="card">
+        <div class="card-icon">🤝</div>
+        <div class="card-title">Contribute</div>
+        <div class="card-description">Help expand matrices, suggest new beliefs, or collaborate on research projects.</div>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Useful Links -->
+  <section class="section">
+    <h2 class="section-title">🔗 Useful Links & Resources</h2>
+    <div class="grid">
+      <a href="[PLACEHOLDER_STANFORD_PHILOSOPHY]" class="card">
+        <div class="card-icon">🎓</div>
+        <div class="card-title">Stanford Encyclopedia of Philosophy</div>
+        <div class="card-description">Comprehensive, peer-reviewed philosophical reference.</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_INTERNET_ENCYCLOPEDIA_PHILOSOPHY]" class="card">
+        <div class="card-icon">📖</div>
+        <div class="card-title">Internet Encyclopedia of Philosophy</div>
+        <div class="card-description">Open-access philosophical resource and articles.</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_JSTOR]" class="card">
+        <div class="card-icon">🔬</div>
+        <div class="card-title">JSTOR Daily</div>
+        <div class="card-description">Academic articles on theology, religion, and philosophy.</div>
+      </a>
+      
+      <a href="[PLACEHOLDER_EERDMANS]" class="card">
+        <div class="card-icon">📘</div>
+        <div class="card-title">Eerdmans Commentary Series</div>
+        <div class="card-description">Comprehensive biblical and theological commentaries.</div>
+      </a>
+    </div>
+  </section>
+  
 </div>
 
-<div id="panel-similarity" class="panel">
-  <div class="sim-section">
-    <h2>Islam Similarity Scores - denominations ranked by doctrinal proximity to Sunni Islam</h2>
-    <p style="font-size:11px;color:var(--text2);margin-bottom:12px;">Score = average agreement across all shared belief rows (scale 0–4, higher = closer to Islam). Not a theological endorsement - a da'wah preparation tool.</p>
-    <div class="sim-grid" id="sim-grid"></div>
-  </div>
-</div>
+<footer>
+  <p>&copy; 2026 DrEagleTalon. All matrices and tools are open-source and available under the MIT License. | <a href="[PLACEHOLDER_REPO]" class="placeholder-link">View Source Code</a></p>
+</footer>
 
-<div id="panel-guide" class="panel">
-  <div style="padding:20px;max-width:680px;">
-    <h2 style="font-size:15px;font-weight:700;margin-bottom:12px;">How to edit this file in VS Code</h2>
-    <div style="font-size:12px;line-height:1.8;color:var(--text);">
-      <p style="margin-bottom:10px;"><strong>Step 1 - Install Live Server extension</strong><br>
-      In VS Code, press Ctrl+Shift+X, search "Live Server" (by Ritwick Dey), install it.</p>
-      <p style="margin-bottom:10px;"><strong>Step 2 - Open this file</strong><br>
-      File → Open Folder → pick the folder this HTML file is in. Click the file in the sidebar.</p>
-      <p style="margin-bottom:10px;"><strong>Step 3 - Launch Live Server</strong><br>
-      Right-click the file in the sidebar → "Open with Live Server". Your browser opens and auto-refreshes on every save.</p>
-      <p style="margin-bottom:10px;"><strong>Step 4 - Find the data section</strong><br>
-      Press Ctrl+F in VS Code and search for:<br>
-      <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW BELIEFS BELOW</code></p>
-      <p style="margin-bottom:10px;"><strong>To add a belief row, copy this pattern:</strong><br>
-      <code style="background:var(--bg2);padding:4px 8px;border-radius:3px;font-size:11px;display:block;margin-top:4px;">["Category", "Your belief text here", [RCC,SBC,UMC,AG,LCMS,PCA,JW,AMI,MEN,SDA,LDS,ISL]],</code>
-      Scores: 2=strongly affirms, 1=affirms, 0=middle, -1=negates, -2=strongly negates, null=N/A</p>
-      <p style="margin-bottom:10px;"><strong>To add a denomination, find:</strong><br>
-      <code style="background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:11px;">// ── ADD NEW DENOMINATIONS BELOW</code><br>
-      Then add a new entry and add a score to every belief row in the same position.</p>
-      <p style="margin-bottom:10px;"><strong>To host on GitHub Pages (free, shareable URL):</strong><br>
-      1. Create free account at github.com<br>
-      2. New repository → name it anything<br>
-      3. Upload this HTML file, name it <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">index.html</code><br>
-      4. Settings → Pages → Source: main branch → Save<br>
-      5. Your URL: <code style="background:var(--bg2);padding:1px 4px;border-radius:3px;">yourusername.github.io/reponame</code></p>
-      <p><strong>Quickest option - Netlify Drop:</strong><br>
-      Go to app.netlify.com/drop, drag this file onto the page, get a live URL in 30 seconds.</p>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<!-- ADD BELIEF MODAL -->
-<div id="add-modal">
-  <div class="modal-box">
-    <h3>Add a new belief row</h3>
-    <div class="form-row">
-      <label>Category</label>
-      <select id="m-cat"></select>
-    </div>
-    <div class="form-row">
-      <label>Belief / doctrine text</label>
-      <textarea id="m-belief" rows="2" placeholder="e.g. Prayer five times daily required"></textarea>
-    </div>
-    <div class="form-row">
-      <label>Scores for each tradition (2, 1, 0, -1, -2, or leave blank for N/A)</label>
-      <div class="score-grid" id="m-scores"></div>
-    </div>
-    <div class="modal-btns">
-      <button class="btn" onclick="closeAddModal()">Cancel</button>
-      <button class="btn active" onclick="submitBelief()">Add belief</button>
-    </div>
-  </div>
-</div>
-
-<script>
-// ═══════════════════════════════════════════════════════════════════════════
-// DATA - edit everything below this line
-// ═══════════════════════════════════════════════════════════════════════════
-
-// ── ADD NEW DENOMINATIONS BELOW (id, full name, broad category)
-// Order here = column order in the table
-// Each belief row must have a score at the same index position
-const DENOMS = [
-  {id:"RCC",  name:"Roman Catholic",          broad:"Catholic"},
-  {id:"SBC",  name:"Southern Baptist (SBC)",  broad:"Protestant - Baptist"},
-  {id:"UMC",  name:"United Methodist",        broad:"Protestant - Methodist"},
-  {id:"AG",   name:"Assemblies of God",       broad:"Protestant - Pentecostal"},
-  {id:"LCMS", name:"Lutheran - LCMS",         broad:"Protestant - Lutheran"},
-  {id:"PCA",  name:"Presbyterian - PCA",      broad:"Protestant - Reformed"},
-  {id:"JW",   name:"Jehovah's Witnesses",     broad:"Restorationist"},
-  {id:"AMI",  name:"Old Order Amish",         broad:"Anabaptist"},
-  {id:"MEN",  name:"Cons. Mennonite",         broad:"Anabaptist"},
-  {id:"SDA",  name:"7th-day Adventist",       broad:"Adventist"},
-  {id:"LDS",  name:"Latter-day Saints",       broad:"LDS"},
-  {id:"ISL",  name:"Sunni Islam",             broad:"Islam"},
-];
-// ── END DENOMINATIONS
-
-// Category colors [background, text]
-const CAT_COLORS = {
-  "Theology":         ["#534AB7","#fff"],
-  "Christology":      ["#185FA5","#fff"],
-  "Soteriology":      ["#0F6E56","#fff"],
-  "Scripture":        ["#3B6D11","#fff"],
-  "Sacraments":       ["#BA7517","#fff"],
-  "Ecclesiology":     ["#854F0B","#fff"],
-  "Eschatology":      ["#A32D2D","#fff"],
-  "Mariology":        ["#993556","#fff"],
-  "Ethics-Family":    ["#3B6D11","#fff"],
-  "Ethics-Substance": ["#0F6E56","#fff"],
-  "Worship":          ["#534AB7","#fff"],
-  "Social-Political": ["#993C1D","#fff"],
-  "Interfaith":       ["#BA7517","#fff"],
-};
-
-// Score similarity notes for Islam panel
-const SIM_NOTES = {
-  "Old Order Amish":       "Highest overlap - modesty, head covering, usury, a cappella, pacifism, mutual aid, community separation",
-  "Cons. Mennonite":       "Very close - pacifism, head covering, separation, usury prohibition, community emphasis",
-  "7th-day Adventist":     "Pork & alcohol prohibition, soul sleep, annihilationism, Sabbath emphasis create notable bridges",
-  "Jehovah's Witnesses":   "Rejects Trinity and hellfire, strict political neutrality, conscientious objection - tawhid-adjacent on some points",
-  "Latter-day Saints":     "Mixed - community & modest dress align; deification, extra-canon scripture, and LDS Christology diverge sharply",
-  "Roman Catholic":        "Social justice tradition aligns; Mariology, icon veneration, purgatory are strongest divergences",
-  "Lutheran - LCMS":       "Biblical inerrancy shared; sacramental theology and Christology diverge from Islamic positions",
-  "Presbyterian - PCA":    "Strong inerrancy alignment; Calvinist predestination and limited atonement diverge",
-  "Assemblies of God":     "Charismatic gifts, tongues, and pre-trib rapture create divergence; alcohol abstinence and prayer discipline align",
-  "United Methodist (UMC)":"Post-2024 LGBTQ inclusion diverges sharply; social justice tradition aligns",
-  "Southern Baptist (SBC)":"Scripture inerrancy and abortion stance shared; sola fide and eternal security diverge significantly",
-};
-
-// ── ADD NEW BELIEFS BELOW
-// Format: ["Category", "Belief text", [score0, score1, ... scoreN]]
-// Scores align with DENOMS array above: RCC, SBC, UMC, AG, LCMS, PCA, JW, AMI, MEN, SDA, LDS, ISL
-// Values: 2=strongly affirms, 1=affirms, 0=middle, -1=negates, -2=strongly negates, null=N/A
-const BELIEFS = [
-  ["Theology","Classical Trinity - one substance, three co-equal persons",       [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2,-2,-2]],
-  ["Theology","God as incorporeal / pure spirit (not physical)",                 [ 2, 2, 2, 2, 2, 2, 1, 2, 2, 2,-2, 2]],
-  ["Theology","God is eternal - no beginning, no end",                           [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2, 2]],
-  ["Theology","Absolute divine sovereignty / strong predestination",             [ 1, 0,-1,-1, 1, 2,-1, 0, 0,-1,-1, 2]],
-  ["Theology","Open theism - God does not foreknow all future events",           [-2,-2, 0,-1,-2,-2,-2,-2,-1,-2,-1,-2]],
-  ["Christology","Jesus fully divine - second person of the Trinity",            [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2, 1,-2]],
-  ["Christology","Jesus co-equal with the Father",                               [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2,-1,-2]],
-  ["Christology","Jesus as a created being (not eternal God)",                   [-2,-2,-2,-2,-2,-2, 2,-2,-2,-2, 0, 1]],
-  ["Christology","Jesus as prophet only - not divine",                           [-2,-2,-2,-2,-2,-2,-1,-2,-2,-2,-2, 2]],
-  ["Christology","Jesus pre-existed before creation",                            [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
-  ["Christology","Virgin birth of Jesus",                                        [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Christology","Jesus as sinless",                                             [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Christology","Physical bodily resurrection of Jesus",                        [ 2, 2, 2, 2, 2, 2,-2, 2, 2, 2, 2,-1]],
-  ["Christology","Literal physical Second Coming",                               [ 2, 2, 2, 2, 2, 2,-1, 2, 2, 2, 2, 2]],
-  ["Christology","Jesus as judge on the Day of Judgment",                        [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1]],
-  ["Christology","Jesus as active intercessor before God",                       [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
-  ["Christology","Substitutionary atonement - Jesus died for sins",              [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,-2]],
-  ["Soteriology","Salvation by faith alone - sola fide",                         [-2, 2,-1, 1, 2, 2,-2,-1,-1, 0,-2,-2]],
-  ["Soteriology","Salvation by grace alone - sola gratia",                       [ 1, 2, 1, 2, 2, 2,-1, 1, 1, 1,-1, 1]],
-  ["Soteriology","Works / deeds necessary for salvation",                        [ 2,-1, 1, 0,-1,-1, 2, 2, 1, 1, 2, 2]],
-  ["Soteriology","Universal atonement - Christ died for all",                    [ 2, 1, 2, 2, 2,-2, 1, 1, 1, 2, 2,null]],
-  ["Soteriology","Limited atonement - only for the elect",                       [-2,-1,-2,-2,-2, 2,-1,-2,-2,-2,-2,null]],
-  ["Soteriology","Unconditional election to salvation",                          [ 0, 0,-2,-2, 1, 2,-1,-1,-1,-1,-2, 0]],
-  ["Soteriology","Eternal security - once saved, always saved",                  [-2, 2,-2,-1, 0, 2,-2,-2,-2,-2,-2,-2]],
-  ["Soteriology","Salvation can be lost / apostasy possible",                    [ 2,-2, 2, 2, 1,-2, 2, 2, 2, 2, 2, 2]],
-  ["Soteriology","Baptism necessary for salvation",                              [ 2,-2, 0,-1, 2,-2, 2, 1, 0,-1, 2,null]],
-  ["Soteriology","Confession and repentance necessary",                          [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Soteriology","Salvation only through explicit faith in Christ",              [ 1, 2,-1, 2, 2, 2, 2, 2, 2, 2, 1,-2]],
-  ["Soteriology","Salvation possible outside the tradition",                     [ 1,-2, 2,-1,-1,-2,-2,-1, 0,-1, 1, 1]],
-  ["Soteriology","Assurance of salvation claimed with certainty",                [ 0, 2, 1, 2, 2, 2,-1,-2,-1, 1, 0, 0]],
-  ["Scripture","Bible as sole rule of faith - sola scriptura",                   [-2, 2, 1, 2, 2, 2,-1, 1, 1, 1,-2,-2]],
-  ["Scripture","Biblical inerrancy (original manuscripts)",                      [ 1, 2, 0, 2, 2, 2, 1, 2, 2, 2, 1,-1]],
-  ["Scripture","Continuing revelation after the Bible",                          [ 0,-2, 0, 2,-2,-2, 2,-2,-2, 1, 2,-2]],
-  ["Scripture","Extra-canonical scripture as authoritative",                     [ 1,-2,-2,-2,-2,-2, 2,-1,-1, 1, 2, 2]],
-  ["Scripture","Church tradition co-authoritative alongside scripture",          [ 2,-2, 1,-1, 1, 1,-1, 2, 1,-1, 2, 1]],
-  ["Scripture","Quran as divine revelation",                                     [-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2]],
-  ["Scripture","Bible partially corrupted - tahrif",                             [-2,-2,-2,-2,-2,-2, 0,-2,-2,-2, 1, 2]],
-  ["Scripture","Prophetic office ongoing today",                                 [-1,-2, 0, 2,-2,-2, 2,-2,-2, 1, 2,-2]],
-  ["Sacraments","Eucharist as literal body/blood - transubstantiation",          [ 2,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2]],
-  ["Sacraments","Real presence in/with bread - sacramental union (LCMS)",        [-1,-2, 0,-2, 2, 1,-2,-2,-2,-2,-2,-2]],
-  ["Sacraments","Communion as symbolic memorial only",                           [-2, 2, 0, 2,-2,-1, 1, 2, 2, 2, 1,null]],
-  ["Sacraments","Infant baptism practiced",                                      [ 2,-2, 2,-2, 2, 2,-2,-2,-2,-2,-2,null]],
-  ["Sacraments","Believer's baptism only (professing adults)",                   [-2, 2,-1, 2,-2,-2, 2, 2, 2, 2, 2,null]],
-  ["Sacraments","Baptism by immersion specifically required",                    [-1, 2,-1, 2,-1,-1, 2,-1, 0, 2, 2,null]],
-  ["Sacraments","Confirmation as a formal sacrament",                            [ 2,-2, 1,-2, 2,-2,-2, 0, 0,-2, 2,null]],
-  ["Sacraments","Confession to a priest as sacrament",                           [ 2,-2,-2,-2, 1,-2,-2,-2,-2,-2,-1,-2]],
-  ["Sacraments","Anointing of the sick as formal sacrament",                     [ 2,-1, 0, 2, 1,-1,-2,-1,-1, 0, 2,null]],
-  ["Sacraments","Marriage as a formal sacrament",                                [ 2,-1, 0,-1,-1,-1,-1,-1,-1,-1, 2,-1]],
-  ["Sacraments","Foot-washing as a formal ordinance",                            [-1,-1,-1,-1,-2,-2,-2, 2, 2, 2,-2,-1]],
-  ["Sacraments","Holy kiss practiced as a formal rite",                          [-2,-2,-2,-2,-2,-2,-2, 2, 2,-2,-2,-1]],
-  ["Ecclesiology","Papal authority and infallibility",                            [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Ecclesiology","Episcopal governance - bishops rule",                          [ 2,-2, 2, 0,-1,-2,-2, 1,-1, 0, 2,-2]],
-  ["Ecclesiology","Presbyterian governance - elders / session",                  [-2,-1,-2,-1,-1, 2,-2,-1,-1,-1,-1, 0]],
-  ["Ecclesiology","Congregational governance - local church autonomy",           [-2, 2,-1, 1,-1,-2,-2, 2, 2,-1,-2, 1]],
-  ["Ecclesiology","Apostolic succession required for valid clergy",               [ 2,-2, 1,-2,-1,-2,-2,-2,-2,-2, 2,-2]],
-  ["Ecclesiology","Women as ordained ministers / pastors",                       [-2,-2, 2, 2,-2,-2,-2,-2,-2,-1,-2,-2]],
-  ["Ecclesiology","Lay leadership strongly emphasized",                           [-1, 1, 1, 1, 0, 1, 2, 2, 2, 1, 2, 2]],
-  ["Ecclesiology","Clergy selected by lot (divine casting of lots)",              [-2,-2,-2,-2,-2,-2,-2, 2,-1,-2,-2,-2]],
-  ["Eschatology","Premillennialism - literal 1,000-year reign",                  [-1, 1,-1, 2,-1,-1, 2,-1,-1, 2, 2, 1]],
-  ["Eschatology","Amillennialism - 1,000-year reign is symbolic",                [ 2, 0, 1,-2, 2, 1,-2, 1, 1,-2,-2, 0]],
-  ["Eschatology","Pre-tribulation rapture",                                      [-2, 1,-1, 2,-2,-2,-2,-1,-1,-2,-2,-2]],
-  ["Eschatology","Eternal hell - eternal conscious punishment",                   [ 2, 2, 1, 2, 2, 2,-2, 2, 2,-2,-1, 2]],
-  ["Eschatology","Annihilationism - wicked permanently destroyed",               [-2,-2,-1,-2,-2,-2, 2,-2,-2, 2,-1,-2]],
-  ["Eschatology","Soul sleep - dead unconscious until resurrection",              [-2,-2,-2,-2,-2,-2, 2,-2,-2, 2,-1,-1]],
-  ["Eschatology","Purgatory",                                                    [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,-1]],
-  ["Eschatology","Prayers for the dead - efficacious",                           [ 2,-2, 0,-2,-2,-2,-2,-2,-2,-2, 2, 2]],
-  ["Eschatology","Literal bodily resurrection at end times",                     [ 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2]],
-  ["Eschatology","Day of Final Judgment / accountability before God",            [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Eschatology","Physical paradise earth for believers (future)",               [ 1, 0, 0, 1, 0, 0, 2, 1, 1, 2, 2, 2]],
-  ["Eschatology","Humans can become gods - deification",                         [ 0,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2,-2]],
-  ["Mariology","Mary as Theotokos - Mother of God",                              [ 2,-1, 0,-1, 2,-1,-2,-1,-1,-1,-1,-1]],
-  ["Mariology","Mary's perpetual virginity",                                     [ 2,-2,-2,-2, 1,-2,-2,-2,-2,-2,-2, 0]],
-  ["Mariology","Immaculate Conception of Mary",                                  [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Mariology","Mary's bodily Assumption into heaven",                           [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Mariology","Prayer to / through Mary",                                       [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Mariology","Veneration of saints - petitioning for intercession",            [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Mariology","Veneration of icons / images in worship",                        [ 1,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2]],
-  ["Mariology","Veneration of relics",                                           [ 2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]],
-  ["Ethics-Family","Abortion prohibited",                                        [ 2, 2,-1, 2, 2, 2, 2, 2, 2, 1, 1, 1]],
-  ["Ethics-Family","All artificial contraception prohibited",                    [ 2,-2,-2,-2,-2,-2,-1, 1,-1,-2,-1,-1]],
-  ["Ethics-Family","Homosexual acts prohibited",                                 [ 2, 2,-2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Ethics-Family","Same-sex marriage prohibited",                               [ 2, 2,-2, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Ethics-Family","Divorce prohibited / severely restricted",                   [ 2,-1,-1,-1,-1,-1, 2, 2, 1,-1,-1,-1]],
-  ["Ethics-Family","Polygamy permitted",                                         [-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1, 1]],
-  ["Ethics-Family","Premarital sex prohibited",                                  [ 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2]],
-  ["Ethics-Family","Modest dress for women - official emphasis",                 [ 1, 1,-1, 1, 1, 1, 2, 2, 2, 1, 2, 2]],
-  ["Ethics-Family","Head covering for women required",                           [ 1,-1,-2,-1,-1,-1, 2, 2, 2,-1,-1, 2]],
-  ["Ethics-Family","Separation from worldly culture required",                   [-1,-1,-2,-1,-1,-1, 2, 2, 2, 1,-1, 1]],
-  ["Ethics-Substance","Alcohol prohibited",                                      [-1, 1, 0, 2,-1,-1,-1,-1, 1, 2, 2, 2]],
-  ["Ethics-Substance","Tobacco prohibited",                                      [-1, 1, 0, 1,-1,-1, 2,-1, 1, 2, 2, 1]],
-  ["Ethics-Substance","Pork / unclean foods prohibited",                         [-2,-2,-2,-2,-2,-2,-2,-2,-2, 1,-1, 2]],
-  ["Ethics-Substance","Coffee and tea prohibited",                               [-2,-2,-2,-2,-2,-2,-2,-2,-2, 0, 2,-2]],
-  ["Ethics-Substance","Gambling prohibited",                                     [ 1, 2, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2]],
-  ["Ethics-Substance","Usury / interest-bearing loans prohibited",               [-1,-2,-2,-2,-2,-2,-1,-1,-1,-2,-2, 2]],
-  ["Worship","Liturgical / highly structured worship",                           [ 2, 0, 1,-2, 2, 1, 2, 2, 1, 1, 2, 2]],
-  ["Worship","Charismatic / spontaneous worship",                                [-1,-1, 0, 2,-2,-2,-2,-2,-2,-1,-1,-2]],
-  ["Worship","Speaking in tongues as initial evidence of Spirit baptism",        [-1,-2,-1, 2,-2,-2,-2,-2,-2,-2,-1,-2]],
-  ["Worship","Faith healing / miracles normative today",                         [-1,-1,-1, 2,-2,-2,-2,-1,-1,-1,-1, 0]],
-  ["Worship","Musical instruments permitted in worship",                         [ 2, 2, 2, 2, 2, 1, 1,-2,-2, 2, 2,-1]],
-  ["Worship","A cappella worship required",                                      [-1,-2,-2,-2,-1, 0,-1, 2, 2,-2,-2, 2]],
-  ["Worship","Fasting as a spiritual discipline",                                [ 2, 1, 1, 2, 1, 1,-1, 1, 1, 1, 1, 2]],
-  ["Worship","Fixed prayer direction / posture required",                        [-1,-2,-2,-1,-1,-2,-1,-1,-1,-2,-2, 2]],
-  ["Worship","Worship held primarily in homes (not dedicated buildings)",        [-2,-2,-2,-1,-2,-2,-2, 2,-1,-2,-2,-1]],
-  ["Social-Political","Pacifism / conscientious objection to all war",           [-1,-2,-1,-2,-2,-2, 2, 2, 2, 1,-1,-2]],
-  ["Social-Political","Just War theory - military service justified",            [ 2, 2, 1, 2, 2, 2,-2,-2,-2,-1, 2, 1]],
-  ["Social-Political","Political non-participation",                             [-2,-2,-2,-2,-2, 0, 2, 2, 2,-1,-2,-1]],
-  ["Social-Political","Active political engagement encouraged",                  [ 2, 2, 2, 1, 1, 0,-2,-2,-2, 0, 1, 0]],
-  ["Social-Political","Rejection of modern technology (partial or full)",        [-2,-2,-2,-2,-2,-2,-2, 2, 1,-2,-2,-2]],
-  ["Social-Political","Community self-sufficiency / mutual aid emphasized",      [ 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2]],
-  ["Social-Political","Capital punishment supported",                            [-2, 1,-1, 0, 2, 1,-1,-2,-2,-1, 0, 2]],
-  ["Social-Political","Social justice as a church mandate",                      [ 2, 0, 2, 1, 1, 0,-1, 1, 2, 2, 1, 2]],
-  ["Social-Political","Refusal of government benefits (SSI, Medicare, etc.)",    [-2,-2,-2,-2,-2,-2,-1, 2,-1,-2,-2,-1]],
-  ["Interfaith","Non-members definitively condemned",                            [-1, 1,-2, 1, 1, 2, 2, 1, 0, 1,-1, 1]],
-  ["Interfaith","Salvation possible for sincere non-Christians",                 [ 2,-2, 2,-1,-1,-2,-2,-1, 0,-1, 1, 1]],
-  ["Interfaith","Jews maintain ongoing covenantal status with God",              [ 1, 2, 1, 2, 0, 0,-2, 0, 0, 1, 1, 0]],
-  ["Interfaith","Bible partially or fully corrupted - tahrif",                   [-2,-2,-2,-2,-2,-2, 0,-2,-2,-2, 1, 2]],
-  ["Interfaith","Muhammad as a legitimate prophet",                              [-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2, 2]],
-];
-// ── END BELIEFS
-
-// ═══════════════════════════════════════════════════════════════════════════
-// APP - you generally do not need to edit below this line
-// ═══════════════════════════════════════════════════════════════════════════
-
-const ISL_IDX = DENOMS.findIndex(d => d.id === "ISL");
-let activeCat = "All";
-let activeDens = new Set(DENOMS.map(d => d.id));
-let rowSortDenom = null;
-let rowSortDir = "desc";
-let colSortBelief = null;
-let colSortDir = "desc";
-let catSortDir = null;
-let beliefSortDir = null;
-let customBeliefs = JSON.parse(localStorage.getItem("custom_beliefs") || "[]");
-const allBeliefs = () => [...BELIEFS, ...customBeliefs];
-
-const CATS = ["All", ...Object.keys(CAT_COLORS)];
-const scoreClass = s => s===2?"s2":s===1?"s1":s===0?"s0":s===-1?"sn1":s===-2?"sn2":"sna";
-const scoreLabel = s => s===null||s===undefined?"-":s>0?`+${s}`:String(s);
-
-function buildCatBtns() {
-  const el = document.getElementById("cat-btns");
-  el.innerHTML = CATS.map(c =>
-    `<button class="btn${c===activeCat?" active":""}" onclick="setcat('${c}')">${c}</button>`
-  ).join("");
-}
-
-function buildDenBtns() {
-  const el = document.getElementById("den-btns");
-  el.innerHTML = `<button class="btn${activeDens.size===DENOMS.length?" active":""}" onclick="toggleAllDens()">All</button>` +
-    DENOMS.map(d =>
-      `<button class="btn${activeDens.has(d.id)?" active":""}" onclick="togden('${d.id}')">${d.name.split(" ")[0]}</button>`
-    ).join("");
-}
-
-function setcat(c) { activeCat = c; buildCatBtns(); renderTable(); }
-function togden(id) {
-  if (activeDens.has(id)) { if (activeDens.size>1) activeDens.delete(id); }
-  else activeDens.add(id);
-  buildDenBtns(); renderTable();
-}
-function toggleAllDens() {
-  if (activeDens.size === DENOMS.length) activeDens = new Set([DENOMS[0].id]);
-  else activeDens = new Set(DENOMS.map(d=>d.id));
-  buildDenBtns(); renderTable();
-}
-
-function toggleDenomSort(id) {
-  // Function to sort rows by denomination scores
-  if (rowSortDenom === id) {
-    if (rowSortDir === "desc") rowSortDir = "asc";
-    else rowSortDenom = null;
-  } else {
-    rowSortDenom = id;
-    rowSortDir = "desc";
-  }
-  colSortBelief = null;
-  catSortDir = null;
-  beliefSortDir = null;
-  renderTable();
-}
-
-function toggleColSort(belief) {
-  // Function to reorder columns by belief scores (currently commented out in UI)
-  if (colSortBelief === belief) colSortDir = colSortDir === "desc" ? "asc" : "desc";
-  else { colSortBelief = belief; colSortDir = "desc"; }
-  rowSortDenom = null;
-  catSortDir = null;
-  beliefSortDir = null;
-  renderTable();
-}
-
-function toggleCatSort() {
-  // Function to sort rows by category, then by belief
-  if (catSortDir === null) catSortDir = "asc";
-  else if (catSortDir === "asc") catSortDir = "desc";
-  else catSortDir = null;
-  rowSortDenom = null;
-  colSortBelief = null;
-  beliefSortDir = null;
-  renderTable();
-}
-
-function toggleBeliefSort() {
-  // Function to sort rows by belief text
-  if (beliefSortDir === null) beliefSortDir = "asc";
-  else if (beliefSortDir === "asc") beliefSortDir = "desc";
-  else beliefSortDir = null;
-  rowSortDenom = null;
-  colSortBelief = null;
-  catSortDir = null;
-  renderTable();
-}
-
-function clearSort() {
-  // Function to clear all sorting
-  rowSortDenom = null;
-  colSortBelief = null;
-  catSortDir = null;
-  beliefSortDir = null;
-  renderTable();
-}
-
-// Main function to render the table
-function renderTable() {
-  const search = document.getElementById("search").value.toLowerCase(); // Get search query in lowercase
-  let visDens = DENOMS.filter(d => activeDens.has(d.id)); // Filter visible denominations
-  const filtered = allBeliefs().filter(([cat,belief]) => // Filter beliefs by category and search
-    (activeCat==="All"||cat===activeCat) &&
-    (!search||belief.toLowerCase().includes(search)||cat.toLowerCase().includes(search))
-  );
-
-  const sortedBeliefs = [...filtered];
-  if (catSortDir) {
-    sortedBeliefs.sort((a,b) => {
-      const cmp = a[0].localeCompare(b[0]);
-      if (cmp !== 0) return catSortDir === "asc" ? cmp : -cmp;
-      return a[1].localeCompare(b[1]);
-    });
-  } else if (beliefSortDir) {
-    sortedBeliefs.sort((a,b) => {
-      const cmp = a[1].localeCompare(b[1]);
-      return beliefSortDir === "asc" ? cmp : -cmp;
-    });
-  } else if (rowSortDenom) {
-    const sortIdx = DENOMS.findIndex(d => d.id===rowSortDenom);
-    sortedBeliefs.sort((a,b)=>{
-      const aScore = a[2] ? a[2][sortIdx] : null;
-      const bScore = b[2] ? b[2][sortIdx] : null;
-      const va = aScore===null||aScore===undefined ? -99 : aScore;
-      const vb = bScore===null||bScore===undefined ? -99 : bScore;
-      return rowSortDir==="desc" ? vb-va : va-vb;
-    });
-  }
-
-  const sortInfo = document.getElementById("sort-info");
-  if (catSortDir) {
-    sortInfo.textContent = `Rows sorted by Category ${catSortDir==="asc"?"↑":"↓"}.`;
-  } else if (beliefSortDir) {
-    sortInfo.textContent = `Rows sorted by Belief ${beliefSortDir==="asc"?"↑":"↓"}.`;
-  } else if (rowSortDenom) {
-    const denom = DENOMS.find(d => d.id===rowSortDenom);
-    sortInfo.textContent = `Rows sorted by ${denom.name} ${rowSortDir==="desc"?"↓":"↑"}.`;
-  } else if (colSortBelief) {
-    sortInfo.textContent = `Columns sorted by scores for "${colSortBelief}" ${colSortDir==="desc"?"↓":"↑"}.`;
-  } else {
-    sortInfo.textContent = "Click a denomination header to sort rows by that tradition, or click Category/Belief headers to sort alphabetically.";
-  }
-
-  if (colSortBelief) {
-    const colRow = sortedBeliefs.find(([,belief]) => belief===colSortBelief);
-    if (colRow) {
-      const rowScores = colRow[2] || [];
-      visDens = [...visDens].sort((a,b)=>{
-        const ai = DENOMS.findIndex(x=>x.id===a.id);
-        const bi = DENOMS.findIndex(x=>x.id===b.id);
-        const va = rowScores[ai]===null||rowScores[ai]===undefined ? -99 : rowScores[ai];
-        const vb = rowScores[bi]===null||rowScores[bi]===undefined ? -99 : rowScores[bi];
-        return colSortDir==="desc" ? vb-va : va-vb;
-      });
-    }
-  }
-
-  document.getElementById("stats").textContent =
-    `${filtered.length} beliefs · ${visDens.length} of ${DENOMS.length} traditions visible`;
-
-  // Build header
-  const thead = document.getElementById("t-head");
-  const broadRow = document.createElement("tr");
-  broadRow.className = "broad-row";
-  broadRow.innerHTML = `<th class="col-cat sticky-cat"></th><th class="col-belief sticky-belief"></th>` +
-    visDens.map(d=>`<th style="min-width:62px">${d.broad}</th>`).join("");
-  const nameRow = document.createElement("tr");
-  nameRow.className = "name-row";
-  nameRow.innerHTML = `<th class="col-cat sticky-cat" style="cursor:pointer" onclick="toggleCatSort()" title="Sort by Category">Category</th><th class="col-belief sticky-belief" style="cursor:pointer" onclick="toggleBeliefSort()" title="Sort by Belief">Belief / doctrine</th>` +
-    visDens.map(d=>{
-      const marker = d.id===rowSortDenom ? (rowSortDir==="desc"?" ↓":" ↑") : "";
-      return `<th style="min-width:62px;cursor:pointer" onclick="toggleDenomSort('${d.id}')" title="Sort rows by ${d.name}">${d.name}${marker}</th>`;
-    }).join("");
-  thead.innerHTML = "";
-  thead.appendChild(broadRow);
-  thead.appendChild(nameRow);
-
-  // Build body
-  const tbody = document.getElementById("t-body");
-  let prevCat = null;
-  tbody.innerHTML = sortedBeliefs.map(([cat,belief,scores], i) => {
-    const [cbg,cfg] = CAT_COLORS[cat]||["#888","#fff"];
-    const catShow = cat !== prevCat ? cat : "";
-    prevCat = cat;
-    const rowClass = i%2===0?"row-even":"row-odd";
-    const rowSortLabel = belief===colSortBelief ? (colSortDir==="desc"?"Sort cols ↓":"Sort cols ↑") : "Sort cols";
-    const denCells = visDens.map(d => {
-      const idx = DENOMS.findIndex(x=>x.id===d.id);
-      const sc = scores ? scores[idx] : null;
-      const cls = scoreClass(sc);
-      return `<td class="score-cell ${cls}" title="${d.name}: ${sc===null?'N/A':(SCORE_LABELS[cls]||sc)}"><span>${scoreLabel(sc)}</span></td>`;
-    }).join("");
-    return `<tr class="${rowClass}">
-      <td class="cat-cell sticky-cat" style="background:${cbg};color:${cfg}">${catShow}</td>
-      <td class="belief-cell sticky-belief">${belief} <!-- <button class="row-sort-btn" onclick="toggleColSort(${JSON.stringify(belief)})" title="Reorder denomination columns by this belief">${rowSortLabel}</button> --></td>
-      ${denCells}
-    </tr>`;
-  }).join("");
-}
-
-const SCORE_LABELS = {s2:"Strongly affirms",s1:"Affirms",s0:"Middle/divided",sn1:"Negates",sn2:"Strongly negates",sna:"N/A"};
-
-function buildSimilarity() {
-  const islamScores = allBeliefs().map(([,,s]) => s ? s[ISL_IDX] : null);
-  const results = DENOMS.filter((_,i)=>i!==ISL_IDX).map(d => {
-    const dIdx = DENOMS.findIndex(x=>x.id===d.id);
-    let total=0, count=0;
-    allBeliefs().forEach(([,,scores],bi) => {
-      const isl = islamScores[bi];
-      const den = scores ? scores[dIdx] : null;
-      if (isl!==null&&isl!==undefined&&den!==null&&den!==undefined) {
-        total += (4 - Math.abs(den-isl)); count++;
-      }
-    });
-    const sim = count ? (total/count).toFixed(2) : "0.00";
-    return {name:d.name, sim: parseFloat(sim), note: SIM_NOTES[d.name]||""};
-  }).sort((a,b)=>b.sim-a.sim);
-
-  const colorSim = s => s>=3.2?"#EAF3DE,#3B6D11":s>=3.0?"#C0DD97,#27500A":s>=2.8?"#F1EFE8,#444441":s>=2.6?"#F5C4B3,#7A1E08":"#FAECE7,#7A1E08";
-  document.getElementById("sim-grid").innerHTML = results.map(r => {
-    const [sbg,sfg] = colorSim(r.sim).split(",");
-    return `<div class="sim-card">
-      <div class="sc-name">${r.name}</div>
-      <div class="sc-score" style="color:${sfg}">${r.sim}</div>
-      <div class="sc-note">${r.note}</div>
-    </div>`;
-  }).join("");
-}
-
-function showTab(id) {
-  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-  document.getElementById("panel-"+id).classList.add("active");
-  event.target.classList.add("active");
-  if (id==="similarity") buildSimilarity();
-}
-
-// Add belief modal
-function openAddModal() {
-  const catSel = document.getElementById("m-cat");
-  catSel.innerHTML = Object.keys(CAT_COLORS).map(c=>`<option>${c}</option>`).join("");
-  const sg = document.getElementById("m-scores");
-  sg.innerHTML = DENOMS.map((d,i)=>`
-    <div><label>${d.name}</label>
-    <input type="number" min="-2" max="2" step="1" id="ms-${i}" placeholder="null"></div>
-  `).join("");
-  document.getElementById("add-modal").classList.add("open");
-}
-function closeAddModal() {
-  document.getElementById("add-modal").classList.remove("open");
-}
-function submitBelief() {
-  const cat = document.getElementById("m-cat").value;
-  const belief = document.getElementById("m-belief").value.trim();
-  if (!belief) { alert("Please enter a belief text."); return; }
-  const scores = DENOMS.map((_,i) => {
-    const v = document.getElementById("ms-"+i).value;
-    return v===""?null:parseInt(v);
-  });
-  customBeliefs.push([cat, belief, scores]);
-  localStorage.setItem("custom_beliefs", JSON.stringify(customBeliefs));
-  closeAddModal();
-  renderTable();
-  buildSimilarity();
-}
-
-// Init
-buildCatBtns();
-buildDenBtns();
-renderTable();
-</script>
 </body>
 </html>
